@@ -3,9 +3,12 @@ import Calendar from './components/Calendar';
 
 const App = () => {
 
+  const [currentDate, setCurrentDate] = useState(new Date());
+
   return (
     <div className="flex flex-col items-center mt-16">
-      <Calendar/>
+      <h1 className="text-4xl my-12">Calendar Scheduler</h1>
+      <Calendar value={currentDate} onChange={setCurrentDate} />
     </div>
   )
 }
