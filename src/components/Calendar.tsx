@@ -32,24 +32,24 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
   const addYear = () => onChange && onChange(add(value, { years: 1 }));
 
   return (
-    <>
+    <div className="">
       <Header value={value} onChange={onChange} />
 
-      <div className="mt-12 w-full">
+      <div className="mt-2 mx-auto w-full border-t border-l">
         <div className="grid grid-cols-7 items-center justify-center text-center">
           {weekdays.map((day, index) => (
-            <Cell key={index} className="text-sm font-semibold">
+            <Cell key={index} className="text-sm font-semibold uppercase">
               {day}
             </Cell>
           ))}
 
           {Array.from({ length: prefixDays }).map((_, index) => {
-            return <Cell key={index} />;
+            return <Cell className="" key={index} />;
           })}
 
           {Array.from({ length: numDays }).map((_, index) => {
             const date = index + 1;
-            return <Cell key={date} className="">{date}</Cell>;
+            return <Cell key={date} className="cursor-pointer text-3xl hover:bg-blue-200">{date}</Cell>;
           })}
 
           {Array.from({ length: suffixDays }).map((_, index) => {
@@ -57,7 +57,7 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

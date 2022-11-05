@@ -16,14 +16,14 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
   const addYear = () => onChange && onChange(add(value, { years: 1 }));
 
   return (
-    <div className="w-full flex flex-row items-center justify-center text-center">
-      
-
-      <Cell onClick={prevYear}>{"<<"}</Cell>
-      <Cell onClick={prevMonth}>{"<"}</Cell>
-      <h1 className="text-3xl text-blue-600">{format(value, "LLLL yyyy")}</h1>
-      <Cell onClick={addMonth}>{">"}</Cell>
-      <Cell onClick={addYear}>{">>"}</Cell>
-    </div>
+    <>
+      <h1 className="text-center text-3xl text-blue-600">{format(value, "LLLL yyyy")}</h1>
+      <div className="w-full flex flex-row items-center justify-center text-center">
+        <div className="mx-2 cursor-pointer" onClick={prevYear}>{"<<"}</div>
+        <div className="mx-2 cursor-pointer" onClick={prevMonth}>{"<"}</div>
+        <div className="mx-2 cursor-pointer" onClick={addMonth}>{">"}</div>
+        <div className="mx-2 cursor-pointer" onClick={addYear}>{">>"}</div>
+      </div>
+    </>
   );
 };
