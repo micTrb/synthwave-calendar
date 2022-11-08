@@ -11,7 +11,7 @@ const Cell:React.FC<Props> = ({onClick, className, children}) => {
     <div 
       onClick={onClick}
       className={clsx(
-        `w-full h-24 border-b border-r p-auto`,        
+        `w-full h-20 p-auto`,        
         className)}>
       {children}
     </div>
