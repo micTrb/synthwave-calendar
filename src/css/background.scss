@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Saira:700');
+@import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  height: 100vh;
+  font-family: 'Saira', sans-serif;
+  font-weight: 700;
+}
+
+img.retrowave-bg {
+  position: fixed;
+  width: 100%;
+  top: 30%;
+  transition: top 1s;
+}
+
+.wrapper {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+
+.graph-container {
+  overflow: hidden;
+  height: 100vh;
+  
+}
