@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Calendar from './components/Calendar';
+import { Counter } from './components/Counter';
 
 const App = () => {
 
@@ -7,7 +8,8 @@ const App = () => {
 
   return (
     <div className="items-center mt-8 sm:w-11/12 w-full mx-auto z-50">
-      <Calendar value={currentDate} onChange={setCurrentDate} />
+      {/* <Calendar value={currentDate} onChange={setCurrentDate} /> */}
+      <Counter/>
     </div>
   )
 }
