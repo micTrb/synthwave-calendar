@@ -1,7 +1,9 @@
 import React from "react";
 import Cell from "./Cell";
 
-import { sub, format, add } from "date-fns";
+import { sub, format, add, nextMonday } from "date-fns";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBackward, faBackwardFast, faBackwardStep, faForward, faForwardFast, faForwardStep } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   value?: Date;
@@ -18,10 +20,26 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
     <div className="text-white">
       <h1 className="text-center text-3xl ">{format(value, "LLLL yyyy")}</h1>
       <div className="w-full flex flex-row items-center justify-center text-center">
-        <div className="mx-2 cursor-pointer" onClick={prevYear}>{"<<"}</div>
-        <div className="mx-2 cursor-pointer" onClick={prevMonth}>{"<"}</div>
-        <div className="mx-2 cursor-pointer" onClick={addMonth}>{">"}</div>
-        <div className="mx-2 cursor-pointer" onClick={addYear}>{">>"}</div>
+        <FontAwesomeIcon
+          onClick={prevYear}
+          icon={faBackwardFast}
+          className="m-4 text-green-800 text-3xl transition-all duration-200 cursor-pointer hover:text-green-100"
+        />
+        <FontAwesomeIcon
+          onClick={prevMonth}
+          icon={faBackwardStep}
+          className="m-4 text-green-800 text-3xl transition-all duration-200 cursor-pointer hover:text-green-100"
+        />
+        <FontAwesomeIcon
+          onClick={addMonth}
+          icon={faForwardStep}
+          className="m-4 text-green-800 text-3xl transition-all duration-200 cursor-pointer hover:text-green-100"
+        />
+        <FontAwesomeIcon
+          onClick={addYear}
+          icon={faForwardFast}
+          className="m-4 text-green-800 text-3xl transition-all duration-200 cursor-pointer hover:text-green-100"
+        />
       </div>
     </div>
   );
