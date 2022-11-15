@@ -3,7 +3,7 @@ import Cell from "./Cell";
 
 import { sub, format, add, nextMonday } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackward, faBackwardFast, faBackwardStep, faForward, faForwardFast, faForwardStep } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faAngleRight, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   value?: Date;
@@ -22,22 +22,22 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
       <div className="w-full flex flex-row items-center justify-center text-center">
         <FontAwesomeIcon
           onClick={prevYear}
-          icon={faBackwardFast}
+          icon={faAnglesLeft}
           className="m-4 text-green-800 text-3xl transition-all duration-200 cursor-pointer hover:text-green-100"
         />
         <FontAwesomeIcon
           onClick={prevMonth}
-          icon={faBackwardStep}
+          icon={faAngleLeft}
           className="m-4 text-green-800 text-3xl transition-all duration-200 cursor-pointer hover:text-green-100"
         />
         <FontAwesomeIcon
           onClick={addMonth}
-          icon={faForwardStep}
+          icon={faAngleRight}
           className="m-4 text-green-800 text-3xl transition-all duration-200 cursor-pointer hover:text-green-100"
         />
         <FontAwesomeIcon
           onClick={addYear}
-          icon={faForwardFast}
+          icon={faAnglesRight}
           className="m-4 text-green-800 text-3xl transition-all duration-200 cursor-pointer hover:text-green-100"
         />
       </div>

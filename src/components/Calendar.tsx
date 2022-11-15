@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import Cell from "./Cell";
 import clsx from "clsx";
 
@@ -16,6 +16,8 @@ import { RootState } from "../redux/store";
 import { compareDates } from "../utils/compareDates";
 import { Reminder } from "../redux/ReminderSlice";
 import { useSelector } from "react-redux";
+import Modal from "./Modal";
+import useModalStatus from "../hooks/useModalStatus";
 
 interface Props {
   value?: Date;
@@ -23,6 +25,8 @@ interface Props {
 }
 
 const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
+  const [isOpen, closeModal, openModal] = useModalStatus(false);
+
   const startDate = startOfMonth(value);
   const endDate = endOfMonth(value);
   const numDays = differenceInDays(endDate, startDate) + 1;
@@ -43,10 +47,15 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
 
   return (
     <div className="">
+      <Modal isOpen={isOpen} closeModal={closeModal} openModal={openModal} />
+
       <Header value={value} onChange={onChange} />
 
       <div className="mt-2 mx-auto w-full">
-        <div className="grid grid-cols-7 border-blue-400 border-t border-b border-green-400 items-center justify-center text-center">
+        <div
+          className="grid grid-cols-7 gap-2 border-blue-400 
+        border-t border-b border-green-400 items-center justify-center text-center"
+        >
           {weekdays.map((day, index) => (
             <div
               key={index}
@@ -74,7 +83,7 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
                 key={day}
                 hasReminder={hasRem}
                 date={date}
-                onClick={() => console.log(date)}
+                onClick={openModal}
                 className="text-3xl border-black-500 bg-black-500 hover:border-green-500 
                 hover:border text-pink-400
                 flex items-start justify-end cursor-pointer transition-all duration-400"
@@ -84,7 +93,6 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
                     "border-b-8 border-green-500": hasRem, //always applies
                   })}
                 >
-
                   {day}
                 </p>
               </Cell>

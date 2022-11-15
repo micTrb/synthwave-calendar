@@ -7,7 +7,6 @@ const App = () => {
 
   return (
     <div className="items-center mt-8 sm:w-11/12 w-full mx-auto z-50">
-      <Counter />
       <Calendar value={currentDate} onChange={setCurrentDate} />
     </div>
   );
