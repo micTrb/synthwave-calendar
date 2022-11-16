@@ -18,17 +18,24 @@ import { Reminder } from "../redux/ReminderSlice";
 import { useSelector } from "react-redux";
 import Modal from "./Modal";
 import useModalStatus from "../hooks/useModalStatus";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import useDateSelector from '../hooks/useDateSelector';
 
-interface Props {
-  value?: Date;
-  onChange?: (value: Date) => void;
-}
+import { useNavigate } from 'react-router-dom';
 
-const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
-  const [isOpen, closeModal, openModal] = useModalStatus(false);
 
-  const startDate = startOfMonth(value);
-  const endDate = endOfMonth(value);
+
+const Calendar: React.FC<Props> = () => {
+ 
+  const navigate = useNavigate();
+
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const [selectedDate, selectDate ] = useDateSelector(currentDate);
+
+  const startDate = startOfMonth(currentDate);
+  const endDate = endOfMonth(currentDate);
   const numDays = differenceInDays(endDate, startDate) + 1;
 
   const prefixDays = startDate.getDay() - 1;
@@ -47,21 +54,22 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
 
   return (
     <div className="">
-      <Modal isOpen={isOpen} closeModal={closeModal} openModal={openModal} />
 
-      <Header value={value} onChange={onChange} />
+      <Header value={currentDate} onChange={setCurrentDate} />
 
-      <div className="mt-2 mx-auto w-full">
+      <div className="mt-2 mx-auto w-11/12">
         <div
-          className="grid grid-cols-7 gap-2 border-blue-400 
+          className="grid grid-cols-7 sm:gap-2 gap-0 border-blue-400 
         border-t border-b border-green-400 items-center justify-center text-center"
         >
           {weekdays.map((day, index) => (
             <div
               key={index}
-              className="m-2 h-12 flex items-start justify-end cursor-pointer"
+              className="h-12 flex items-start justify-end cursor-pointer"
             >
-              <p className="m-auto text-xl text-yellow-500 uppercase">{day}</p>
+              <p className="m-auto sm:text-xl text-md text-yellow-500 uppercase">
+                {day}
+              </p>
             </div>
           ))}
         </div>
@@ -83,13 +91,14 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
                 key={day}
                 hasReminder={hasRem}
                 date={date}
-                onClick={openModal}
-                className="text-3xl border-black-500 bg-black-500 hover:border-green-500 
-                hover:border text-pink-400
-                flex items-start justify-end cursor-pointer transition-all duration-400"
+                onClick={() => selectDate(date)}
+                className={clsx(`sm:text-3xl text-xl border-black-500 bg-black-500 hover:border-green-500 
+                hover:border text-pink-400 flex items-start justify-end cursor-pointer transition-all duration-400`,
+                {"bg-black-300 border-green-500 border-4 hover:border-4": compareDates(selectedDate, date)}
+                )}
               >
                 <p
-                  className={clsx("my-2 mr-4", {
+                  className={clsx("lg:my-2 lg:mr-4 m-auto", {
                     "border-b-8 border-green-500": hasRem, //always applies
                   })}
                 >
@@ -103,6 +112,14 @@ const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
             return <div key={index} className="" />;
           })}
         </div>
+      </div>
+
+      <div className="mt-8 mx-auto w-11/12 flex justify-end">
+        <FontAwesomeIcon
+          onClick={() => navigate('/add-reminder')}
+          className="cursor-pointer hover:bg-pink-200 bg-pink-500 rounded-full sm:p-6 sm:text-3xl p-4 text-white"
+          icon={faPlus}
+        />
       </div>
     </div>
   );

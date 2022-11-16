@@ -2,13 +2,24 @@ import React, { useState } from "react";
 import Calendar from "./components/Calendar";
 import { Counter } from "./components/Counter";
 
-const App = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+import {
+  BrowserRouter as Router,
+  Routes,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
 
+import CreateReminder from "./components/CreateReminder";
+
+const App = () => {
   return (
-    <div className="items-center mt-8 sm:w-11/12 w-full mx-auto z-50">
-      <Calendar value={currentDate} onChange={setCurrentDate} />
-    </div>
+    <Router>
+      <div className="items-center mt-8 sm:w-11/12 w-full mx-auto z-50">
+        <Routes>
+          <Route path="/" element={<Calendar />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
