@@ -20,19 +20,16 @@ import Modal from "./Modal";
 import useModalStatus from "../hooks/useModalStatus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import useDateSelector from '../hooks/useDateSelector';
+import useDateSelector from "../hooks/useDateSelector";
 
-import { useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from "react-router-dom";
 
 const Calendar: React.FC<Props> = () => {
- 
   const navigate = useNavigate();
 
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const [selectedDate, selectDate ] = useDateSelector(currentDate);
+  const [selectedDate, selectDate] = useDateSelector(currentDate);
 
   const startDate = startOfMonth(currentDate);
   const endDate = endOfMonth(currentDate);
@@ -53,11 +50,10 @@ const Calendar: React.FC<Props> = () => {
   };
 
   return (
-    <div className="">
-
+    <div className="mb-12">
       <Header value={currentDate} onChange={setCurrentDate} />
 
-      <div className="mt-2 mx-auto w-11/12">
+      <div className="my-12 mx-auto w-11/12">
         <div
           className="grid grid-cols-7 sm:gap-2 gap-0 border-blue-400 
         border-t border-b border-green-400 items-center justify-center text-center"
@@ -92,9 +88,17 @@ const Calendar: React.FC<Props> = () => {
                 hasReminder={hasRem}
                 date={date}
                 onClick={() => selectDate(date)}
-                className={clsx(`sm:text-3xl text-xl border-black-500 bg-black-500 hover:border-green-500 
+                className={clsx(
+                  `sm:text-3xl text-xl border-black-500 bg-black-600/10 hover:border-green-500 
                 hover:border text-pink-400 flex items-start justify-end cursor-pointer transition-all duration-400`,
-                {"bg-black-300 border-green-500 border-4 hover:border-4": compareDates(selectedDate, date)}
+                  {
+                    "bg-black-300 border-green-500 border-4 hover:border-4":
+                      compareDates(selectedDate, date),
+                  },
+                  {
+                    "bg-black-300": hasRem, //always applies
+                  }
+
                 )}
               >
                 <p
@@ -112,14 +116,14 @@ const Calendar: React.FC<Props> = () => {
             return <div key={index} className="" />;
           })}
         </div>
-      </div>
 
-      <div className="mt-8 mx-auto w-11/12 flex justify-end">
-        <FontAwesomeIcon
-          onClick={() => navigate('/add-reminder')}
-          className="cursor-pointer hover:bg-pink-200 bg-pink-500 rounded-full sm:p-6 sm:text-3xl p-4 text-white"
-          icon={faPlus}
-        />
+        <div className="my-16 flex justify-end">
+          <FontAwesomeIcon
+            onClick={() => navigate("/add-reminder")}
+            className="cursor-pointer hover:bg-pink-200 bg-pink-500 rounded-full sm:p-6 sm:text-3xl p-4 py-32  text-white"
+            icon={faPlus}
+          />
+        </div>
       </div>
     </div>
   );
