@@ -16,15 +16,12 @@ import { RootState } from "../redux/store";
 import { compareDates } from "../utils/compareDates";
 import { Reminder } from "../redux/ReminderSlice";
 import { useSelector } from "react-redux";
-import Modal from "./Modal";
-import useModalStatus from "../hooks/useModalStatus";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Tooltip, Button } from "@material-tailwind/react";
 import useDateSelector from "../hooks/useDateSelector";
 
 import { useNavigate } from "react-router-dom";
 
-const Calendar: React.FC<Props> = () => {
+const Calendar: React.FC = () => {
   const navigate = useNavigate();
 
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -47,6 +44,21 @@ const Calendar: React.FC<Props> = () => {
       compareDates(reminder.date, date)
     );
     return hasReminder;
+  };
+
+  const renderReminders = (reminders: Reminder[], date: Date) => {
+
+    let filteredReminders = reminders.filter((r) => compareDates(r.date, date));
+
+    let renderedRem = filteredReminders.map((reminder: Reminder) => (
+      <Tooltip className="bg-black-100 p-4" key={reminder.id} content={reminder.content}>
+        <p onClick={() => console.log(reminder)}
+        className={clsx(`text-xs text-center text-black-500 
+        ${reminder.priority} p-2 rounded-md`)}
+        />
+      </Tooltip>
+    ));
+    return renderedRem;
   };
 
   return (
@@ -87,27 +99,38 @@ const Calendar: React.FC<Props> = () => {
                 key={day}
                 hasReminder={hasRem}
                 date={date}
-                onClick={() => selectDate(date)}
+                onClick={() => navigate('/add-reminder')}
                 className={clsx(
-                  `sm:text-3xl text-xl border-black-500 bg-black-600/10 hover:border-green-500 
-                hover:border text-pink-400 flex items-start justify-end cursor-pointer transition-all duration-400`,
+                  `items-center justify-center border-black-500 bg-black-300/40 hover:border-green-500 
+                hover:border text-pink-400 cursor-pointer transition-all duration-400`,
                   {
                     "bg-black-300 border-green-500 border-4 hover:border-4":
                       compareDates(selectedDate, date),
                   },
                   {
-                    "bg-black-500": hasRem, //always applies
+                    "bg-black-500 overflow-auto": hasRem, //always applies
                   }
-
                 )}
               >
-                <p
-                  className={clsx("lg:my-2 lg:mr-4 m-auto", {
-                    "border-b-8 border-green-500": hasRem, //always applies
-                  })}
+                <div
+                  className={clsx(
+                    `flex flex-col sm:items-end sm:justify-center m-auto`
+                  )}
                 >
-                  {day}
-                </p>
+                  <p className="sticky lg:my-1 lg:mr-2 lg:text-md md:text-sm text-xs">
+                    {day}
+                  </p>
+
+                  {hasRem ? (
+                    <div
+                      className={clsx(
+                        `grid grid-cols-6 gap-1 justify-end m-auto`
+                      )}
+                    >
+                      {renderReminders(reminders, date)}
+                    </div>
+                  ) : null}
+                </div>
               </Cell>
             );
           })}
@@ -115,14 +138,6 @@ const Calendar: React.FC<Props> = () => {
           {Array.from({ length: suffixDays }).map((_, index) => {
             return <div key={index} className="" />;
           })}
-        </div>
-
-        <div className="my-16 flex justify-end">
-          <FontAwesomeIcon
-            onClick={() => navigate("/add-reminder")}
-            className="cursor-pointer hover:bg-pink-200 bg-pink-500 rounded-full sm:p-6 sm:text-3xl p-4 py-32  text-white"
-            icon={faPlus}
-          />
         </div>
       </div>
     </div>

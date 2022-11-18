@@ -22,7 +22,7 @@ const Cell: React.FC<Props> = ({ onClick, className, children, date, hasReminder
 
 
   return (
-    <div onClick={onClick} className={clsx(`lg:h-24 md:h-24 h-12 p-auto`, 
+    <div onClick={onClick} className={clsx(`w-full lg:h-32 md:h-24 h-12 p-auto`, 
     className)}>
       {children}
     </div>

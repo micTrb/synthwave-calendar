@@ -3,10 +3,18 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { add } from "date-fns";
 import { generateId } from '../utils/randomId';
 
+export enum Priority {
+  NoPriority = "bg-black-200",
+  Low = "bg-green-200",
+  Medium = "bg-yellow-200",
+  High = "bg-red-500"
+}
+
 export interface Reminder {
   id: string;
   content: string;
   date: Date;
+  priority: Priority
 };
 export interface ReminderState {
   reminders: Array<Reminder>;
@@ -17,23 +25,45 @@ const initialState: ReminderState = {
     {
       id: "c2187edf-041b-0a61-3651-79d671fa3db7",
       content: "Write essay 2",
-      date: new Date('2022-11-24T00:00:00'),
+      date: new Date('2022-11-19T00:00:00'),
+      priority: Priority.High
     },
     {
-      id: "c2481edf-041b-0a61-3456-79d671fa3db7",
-      content: "Call Bob2",
-      date: new Date('2022-11-20T00:00:00'),
+      id: "c2187edf-12re-0a61-3651-79d671fa3db7",
+      content: "Write poem",
+      date: new Date('2022-11-19T00:00:00'),
+      priority: Priority.Low
     },
     {
-      id: "c2181edf-041b-0a61-3651-79d671fa3db7",
-      content: "Write essay",
-      date: new Date('2022-12-24T00:00:00'),
+      id: generateId(),
+      content: "Write poem 2",
+      date: new Date('2022-11-10T00:00:00'),
+      priority: Priority.Low
     },
     {
-      id: "c2181edf-041b-0a61-3456-79d671fa3db7",
-      content: "Call Bob",
-      date: new Date('2022-12-20T00:00:00'),
+      id: generateId(),
+      content: "Write poem 2",
+      date: new Date('2022-11-10T00:00:00'),
+      priority: Priority.High
     },
+    {
+      id: generateId(),
+      content: "Write poem 2",
+      date: new Date('2022-11-10T00:00:00'),
+      priority: Priority.Medium
+    },
+    {
+      id: generateId(),
+      content: "Write poem 3",
+      date: new Date('2022-11-01T00:00:00'),
+      priority: Priority.Low
+    },
+    {
+      id: generateId(),
+      content: "Write handbook",
+      date: new Date('2022-11-01T00:00:00'),
+      priority: Priority.Medium
+    }
   ],
 };
 
@@ -46,6 +76,7 @@ export const reminderSlice = createSlice({
         id: generateId(),
         content: action.payload.content,
         date: action.payload.date,
+        priority: action.payload.priority
       };
       state.reminders.push(newReminder);
     },
