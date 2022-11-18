@@ -96,7 +96,7 @@ const Calendar: React.FC<Props> = () => {
                       compareDates(selectedDate, date),
                   },
                   {
-                    "bg-black-300": hasRem, //always applies
+                    "bg-black-500": hasRem, //always applies
                   }
 
                 )}

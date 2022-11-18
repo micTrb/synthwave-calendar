@@ -13,10 +13,14 @@ const Form: React.FC = () => {
   const [page, setPage] = useState(0);
   const [formData, setFormData] = useState<FormData>({
     task: "",
-    date: new Date(),
+    date: new Date()
   });
 
-  const FormTitles: string[] = ["What you need to do?", "When?", "At what time?"];
+  const FormTitles: string[] = [
+    "What you need to do?",
+    "When?",
+    "At what time?",
+  ];
 
   const PageDisplay = () => {
     if (page === 0) {
@@ -41,7 +45,9 @@ const Form: React.FC = () => {
     <div className="h-screen w-full flex items-center justify-center">
       <div className="m-auto w-full">
         <div className="my-8">
-          <h1 className="text-white text-center text-3xl">{FormTitles[page]}</h1>
+          <h1 className="text-white text-center text-3xl">
+            {FormTitles[page]}
+          </h1>
         </div>
         <div className="body">{PageDisplay()}</div>
         <div className="flex justify-center items-center mt-16">
