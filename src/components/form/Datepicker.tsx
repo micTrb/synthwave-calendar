@@ -9,6 +9,7 @@ import {
   getDate,
   getMonth,
   getYear,
+  isEqual,
   parse,
   startOfToday,
 } from "date-fns";
@@ -107,7 +108,7 @@ const DatePicker = ({ formData, setFormData }: InputProps) => {
                   className={clsx(
                     "transition-colors duration-300 cursor-pointer text-center rounded-full p-2 hover:bg-black-400",
                     {
-                      "bg-pink-400 hover:bg-pink-100": compareDates(
+                      "bg-pink-400 hover:bg-pink-100": isEqual(
                         day,
                         selectedDay
                       ),

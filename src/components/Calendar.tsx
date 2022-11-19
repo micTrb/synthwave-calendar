@@ -3,63 +3,43 @@ import Cell from "./Cell";
 import clsx from "clsx";
 
 import { weekdays } from "../configs/Weekdays";
-import {
-  startOfMonth,
-  endOfMonth,
-  differenceInDays,
-  sub,
-  format,
-  add,
-} from "date-fns";
 import { Header } from "./Header";
-import { RootState } from "../redux/store";
-import { compareDates } from "../utils/compareDates";
-import { Reminder } from "../redux/ReminderSlice";
-import { useSelector } from "react-redux";
-import { Tooltip, Button } from "@material-tailwind/react";
-import useDateSelector from "../hooks/useDateSelector";
+import { RootState } from "../store";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
+import { selectDate } from "../redux/CalendarSlice";
+import RemindersGrid from "./RemindersGrid";
+import useCalendar from "../hooks/useCalendar";
+import { hasReminders } from "../utils/hasReminders";
+import useMediaQuery from "../hooks/useMediaQuery";
+import { isEqual } from "date-fns";
 
 const Calendar: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const lg = useMediaQuery("(min-width: 769px)");
+  const md = useMediaQuery("(max-width: 768px)");
+  const sm = useMediaQuery("(max-width: 320px)");
 
-  const [selectedDate, selectDate] = useDateSelector(currentDate);
-
-  const startDate = startOfMonth(currentDate);
-  const endDate = endOfMonth(currentDate);
-  const numDays = differenceInDays(endDate, startDate) + 1;
-
-  const prefixDays = startDate.getDay() - 1;
-  const suffixDays = 7 - endDate.getDay();
+  const [
+    currentDate,
+    setCurrentDate,
+    startDate,
+    endDate,
+    numDays,
+    prefixDays,
+    suffixDays,
+  ] = useCalendar(new Date());
 
   const reminders = useSelector(
     (state: RootState) => state.reminders.reminders
   );
 
-  const hasReminder = (date: Date) => {
-    let hasReminder = reminders.some((reminder: Reminder) =>
-      compareDates(reminder.date, date)
-    );
-    return hasReminder;
-  };
-
-  const renderReminders = (reminders: Reminder[], date: Date) => {
-
-    let filteredReminders = reminders.filter((r) => compareDates(r.date, date));
-
-    let renderedRem = filteredReminders.map((reminder: Reminder) => (
-      <Tooltip className="bg-black-100 p-4" key={reminder.id} content={reminder.content}>
-        <p onClick={() => console.log(reminder)}
-        className={clsx(`text-xs text-center text-black-500 
-        ${reminder.priority} p-2 rounded-md`)}
-        />
-      </Tooltip>
-    ));
-    return renderedRem;
-  };
+  const selectedDate = useSelector(
+    (state: RootState) => state.calendar.selectedDate
+  );
 
   return (
     <div className="mb-12">
@@ -91,45 +71,46 @@ const Calendar: React.FC = () => {
             const day = index + 1;
             const year = startDate.getFullYear();
             const month = startDate.getMonth();
-            const date = new Date(year, month, day);
-            let hasRem = hasReminder(date);
+            const date = new Date(year, month, day + 1);
+            let hasRem = hasReminders(reminders, date);
 
             return (
               <Cell
                 key={day}
                 hasReminder={hasRem}
                 date={date}
-                onClick={() => navigate('/add-reminder')}
+                onClick={() => dispatch(selectDate(date))}
                 className={clsx(
                   `items-center justify-center border-black-500 bg-black-300/40 hover:border-green-500 
                 hover:border text-pink-400 cursor-pointer transition-all duration-400`,
                   {
-                    "bg-black-300 border-green-500 border-4 hover:border-4":
-                      compareDates(selectedDate, date),
+                    "bg-black-300 border-green-500 border-2 hover:border-2":
+                      isEqual(selectedDate, date),
                   },
                   {
-                    "bg-black-500 overflow-auto": hasRem, //always applies
+                    "overflow-auto": hasRem,
+                    "bg-pink-500 text-green-700": hasRem && (md || sm), //always applies
                   }
                 )}
               >
                 <div
                   className={clsx(
-                    `flex flex-col sm:items-end sm:justify-center m-auto`
+                    `w-11/12 flex flex-col lg:items-end lg:justify-center m-auto`
                   )}
                 >
-                  <p className="sticky lg:my-1 lg:mr-2 lg:text-md md:text-sm text-xs">
-                    {day}
-                  </p>
+                  <p className="lg:my-1 lg:mr-2 lg:text-md text-sm">{day}</p>
 
                   {hasRem ? (
                     <div
                       className={clsx(
-                        `grid grid-cols-6 gap-1 justify-end m-auto`
+                        `grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-1 justify-end m-auto`
                       )}
                     >
-                      {renderReminders(reminders, date)}
+                      {lg ? <RemindersGrid reminders={reminders} date={date} /> : null}
                     </div>
                   ) : null}
+
+
                 </div>
               </Cell>
             );

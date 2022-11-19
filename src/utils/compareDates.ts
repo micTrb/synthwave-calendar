@@ -1,4 +1,4 @@
-import { isEqual } from 'date-fns';
+import { isEqual } from "date-fns";
 
 export function compareDates(dateLeft: Date, dateRight: Date): boolean {
 

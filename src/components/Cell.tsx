@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { RootState } from "../redux/store";
+import { RootState } from "../store";
 import { useSelector } from "react-redux";
 import { isEqual } from "date-fns";
 import { Reminder } from "../redux/ReminderSlice";
