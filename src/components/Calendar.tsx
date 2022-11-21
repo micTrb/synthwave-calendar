@@ -74,11 +74,11 @@ const Calendar: React.FC = () => {
             const date = new Date(year, month, day + 1);
             let hasRem = hasReminders(reminders, date);
 
+          
             return (
               <Cell
                 key={day}
                 hasReminder={hasRem}
-                date={date}
                 onClick={() => dispatch(selectDate(date))}
                 className={clsx(
                   `items-center justify-center border-black-500 bg-black-300/40 hover:border-green-500 

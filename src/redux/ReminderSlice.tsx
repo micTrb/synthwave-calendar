@@ -25,43 +25,43 @@ const initialState: ReminderState = {
     {
       id: "c2187edf-041b-0a61-3651-79d671fa3db7",
       content: "Write essay 2",
-      date: new Date('2022-11-19T00:00:00'),
+      date: new Date(2022, 11, 12, 0, 0, 0),
       priority: Priority.High
     },
     {
       id: "c2187edf-12re-0a61-3651-79d671fa3db7",
       content: "Write poem",
-      date: new Date('2022-11-19T00:00:00'),
+      date: new Date(2022, 11, 24, 0, 0, 0),
       priority: Priority.Low
     },
     {
       id: generateId(),
-      content: "Write poem 2",
-      date: new Date('2022-11-10T00:00:00'),
+      content: "Write poem yeah",
+      date: new Date(2022, 11, 23, 0, 0, 0),
       priority: Priority.Low
     },
     {
       id: generateId(),
-      content: "Write poem 2",
-      date: new Date('2022-11-10T00:00:00'),
+      content: "Write poem text",
+      date: new Date(2022, 11, 16, 0, 0, 0),
       priority: Priority.High
     },
     {
       id: generateId(),
       content: "Write poem 2",
-      date: new Date('2022-11-10T00:00:00'),
+      date: new Date(2022, 11, 18, 0, 0, 0),
       priority: Priority.Medium
     },
     {
       id: generateId(),
       content: "Write poem 3",
-      date: new Date('2022-11-01T00:00:00'),
+      date: new Date(2022, 11, 24, 0, 0, 0),
       priority: Priority.Low
     },
     {
       id: generateId(),
       content: "Write handbook",
-      date: new Date('2022-11-01T00:00:00'),
+      date: new Date(2022, 11, 24, 0, 0, 0),
       priority: Priority.Medium
     }
   ],

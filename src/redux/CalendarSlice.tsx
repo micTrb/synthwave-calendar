@@ -3,6 +3,10 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { add } from "date-fns";
 import { generateId } from '../utils/randomId';
 
+export interface DatePayload {
+  payload: Date,
+  type: string
+}
 
 export interface CalendarState {
   selectedDate: Date
