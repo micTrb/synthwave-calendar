@@ -1,15 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { add } from "date-fns";
-import { generateId } from '../utils/randomId';
-
-export interface DatePayload {
-  payload: Date,
-  type: string
-}
+import { add, parseISO, startOfDay } from "date-fns";
+import { generateId } from "../utils/randomId";
 
 export interface CalendarState {
-  selectedDate: Date
+  selectedDate: Date;
 }
 
 const initialState: CalendarState = {
@@ -21,8 +16,8 @@ export const calendarSlice = createSlice({
   initialState,
   reducers: {
     selectDate: (state, action) => {
-      state.selectedDate = action.payload
-    }
+      state.selectedDate = action.payload;
+    },
   },
 });
 

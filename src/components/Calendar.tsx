@@ -13,7 +13,7 @@ import RemindersGrid from "./RemindersGrid";
 import useCalendar from "../hooks/useCalendar";
 import { hasReminders } from "../utils/hasReminders";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { isEqual } from "date-fns";
+import { isEqual, startOfDay } from "date-fns";
 
 const Calendar: React.FC = () => {
   const navigate = useNavigate();
@@ -71,21 +71,23 @@ const Calendar: React.FC = () => {
             const day = index + 1;
             const year = startDate.getFullYear();
             const month = startDate.getMonth();
-            const date = new Date(year, month, day + 1);
+            const date = startOfDay(new Date(year, month, day));
+
             let hasRem = hasReminders(reminders, date);
 
-          
+
             return (
               <Cell
                 key={day}
-                hasReminder={hasRem}
+                hasReminder={true}
                 onClick={() => dispatch(selectDate(date))}
+                
                 className={clsx(
-                  `items-center justify-center border-black-500 bg-black-300/40 hover:border-green-500 
+                  `items-center justify-center border-black-500 bg-black-300/40 hover:border-green-500
                 hover:border text-pink-400 cursor-pointer transition-all duration-400`,
                   {
                     "bg-black-300 border-green-500 border-2 hover:border-2":
-                      isEqual(selectedDate, date),
+                      +selectedDate === +date,
                   },
                   {
                     "overflow-auto": hasRem,
@@ -109,7 +111,6 @@ const Calendar: React.FC = () => {
                       {lg ? <RemindersGrid reminders={reminders} date={date} /> : null}
                     </div>
                   ) : null}
-
 
                 </div>
               </Cell>
