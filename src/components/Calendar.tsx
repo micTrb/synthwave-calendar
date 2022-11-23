@@ -6,14 +6,15 @@ import { weekdays } from "../configs/Weekdays";
 import { Header } from "./Header";
 import { RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
+import * as CalendarActions from "../redux/CalendarSlice";
 
 import { useNavigate } from "react-router-dom";
-import { selectDate } from "../redux/CalendarSlice";
 import RemindersGrid from "./RemindersGrid";
 import useCalendar from "../hooks/useCalendar";
 import { hasReminders } from "../utils/hasReminders";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { isEqual, startOfDay } from "date-fns";
+import { isEqual, parseISO, startOfDay } from "date-fns";
+import { compareDates } from '../utils/compareDates';
 
 const Calendar: React.FC = () => {
   const navigate = useNavigate();
@@ -41,11 +42,16 @@ const Calendar: React.FC = () => {
     (state: RootState) => state.calendar.selectedDate
   );
 
+  const handleSelectDate: (date: Date) => void = (date: Date) => {
+    dispatch(CalendarActions.selectDate(date));
+  };
+
   return (
     <div className="mb-12">
       <Header value={currentDate} onChange={setCurrentDate} />
 
       <div className="my-12 mx-auto w-11/12">
+        <button className="bg-green-500" onClick={() => console.log(selectedDate)}>CLICK</button>
         <div
           className="grid grid-cols-7 sm:gap-2 gap-0 border-blue-400 
         border-t border-b border-green-400 items-center justify-center text-center"
@@ -75,19 +81,17 @@ const Calendar: React.FC = () => {
 
             let hasRem = hasReminders(reminders, date);
 
-
             return (
               <Cell
                 key={day}
                 hasReminder={true}
-                onClick={() => dispatch(selectDate(date))}
-                
+                onClick={() => handleSelectDate(date)}
                 className={clsx(
                   `items-center justify-center border-black-500 bg-black-300/40 hover:border-green-500
                 hover:border text-pink-400 cursor-pointer transition-all duration-400`,
                   {
                     "bg-black-300 border-green-500 border-2 hover:border-2":
-                      +selectedDate === +date,
+                      compareDates(selectedDate, date),
                   },
                   {
                     "overflow-auto": hasRem,
@@ -108,10 +112,11 @@ const Calendar: React.FC = () => {
                         `grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-1 justify-end m-auto`
                       )}
                     >
-                      {lg ? <RemindersGrid reminders={reminders} date={date} /> : null}
+                      {lg ? (
+                        <RemindersGrid reminders={reminders} date={date} />
+                      ) : null}
                     </div>
                   ) : null}
-
                 </div>
               </Cell>
             );

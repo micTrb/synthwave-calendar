@@ -9,7 +9,9 @@ export const hasReminders = (
   date: Date
 ) => {
 
-  let hasReminder = reminders.some((reminder: Reminder) => +reminder.date === +date);
+  
+
+  let hasReminder = reminders.some((reminder: Reminder) => isEqual(reminder.date, date));
 
   return hasReminder;
 };

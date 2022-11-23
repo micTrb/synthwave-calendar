@@ -14,6 +14,7 @@ interface Props {
 const RemindersGrid: React.FC<Props> = ({ reminders, date }) => {
   let filteredReminders = reminders.filter((r) => isEqual(r.date, date));
 
+  
   return (
     <>
       {filteredReminders.map((reminder: Reminder) => (

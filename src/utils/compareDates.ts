@@ -1,4 +1,4 @@
-import { isEqual  } from "date-fns";
+import { isEqual, startOfDay  } from "date-fns";
 
 export function compareDates(dateLeft: Date, dateRight: Date): boolean {
 
@@ -10,9 +10,9 @@ export function compareDates(dateLeft: Date, dateRight: Date): boolean {
   const m2 = dateRight.getMonth();
   const y2 = dateRight.getFullYear();
   
-  const newDateLeft = new Date(y1, m1, d1);
-  const newDateRight = new Date(y2, m2, d2);
+  const newDateLeft = startOfDay(new Date(y1, m1, d1));
+  const newDateRight = startOfDay(new Date(y2, m2, d2));
   
 
-  return newDateLeft === newDateRight;
+  return isEqual(newDateLeft, newDateRight);
 }
