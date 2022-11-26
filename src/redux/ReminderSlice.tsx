@@ -23,11 +23,42 @@ export interface ReminderState {
 const initialState: ReminderState = {
   reminders: [
     {
-      id: "c2187edf-041b-0a61-3651-79d671fa3db7",
+      id: generateId(),
       content: "Write essay 2",
       date: new Date(2022, 10, 4),
       priority: Priority.High
-    }
+    },
+    {
+      id: generateId(),
+      content: "Write poem",
+      date: new Date(2022, 10, 4),
+      priority: Priority.Medium
+    },
+    {
+      id: generateId(),
+      content: "Call bob",
+      date: new Date(2022, 10, 4),
+      priority: Priority.Low
+    },
+    {
+      id: generateId(),
+      content: "Write essay 2",
+      date: new Date(2022, 10, 4),
+      priority: Priority.High
+    },
+    {
+      id: generateId(),
+      content: "Write poem",
+      date: new Date(2022, 10, 4),
+      priority: Priority.Medium
+    },
+    {
+      id: generateId(),
+      content: "Call bob",
+      date: new Date(2022, 10, 4),
+      priority: Priority.Low
+    },
+
   ],
 };
 
