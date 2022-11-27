@@ -25,7 +25,9 @@ const RemindersGrid: React.FC<Props> = ({ reminders, date }) => {
         >
           <p
             onClick={() => console.log(reminder)}
-            className={clsx(`text-center text-black-500 xl:w-5 xl:h-5 md:w-4 md:h-4
+            className={clsx(`text-center text-black-500 
+            xl:w-5 xl:h-5 lg:w-4 lg:h-4 w-4 h-4
+
                ${reminder.priority} hover:opacity-80 p-2 rounded-md`)}
           />
         </Tooltip>

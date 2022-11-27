@@ -9,7 +9,8 @@ import { RootState } from "../../store";
 import { setHours } from "date-fns/esm";
 import { createDate } from "../../utils/createDate";
 import { Navigate, useNavigate } from "react-router";
-import { addReminder } from "../../redux/ReminderSlice";
+import { addReminder, Priority } from "../../redux/ReminderSlice";
+import PrioritySelect from "./PrioritySelect";
 
 export interface Step {
   step: number;
@@ -22,6 +23,7 @@ export interface FormData {
   hours: string;
   minutes: string;
   ap: string;
+  priority: Priority;
   date: Date;
 }
 
@@ -40,6 +42,7 @@ const Form: React.FC = () => {
     hours: "00",
     minutes: "00",
     ap: "AM",
+    priority: Priority.NoPriority,
     date: new Date(),
   });
 
@@ -53,6 +56,11 @@ const Form: React.FC = () => {
       step: 1,
       key: "time",
       text: "At what time?",
+    },
+    {
+      step: 2,
+      key: "priority",
+      text: "Which priority you wanna give?",
     },
     {
       step: 2,
@@ -70,6 +78,21 @@ const Form: React.FC = () => {
       return <TaskName formData={formData} setFormData={setFormData} />;
     } else if (stepObj.key === "time") {
       return <Timepicker formData={formData} setFormData={setFormData} />;
+    } else if (stepObj.key === "priority") {
+      return (
+        <PrioritySelect
+          onChange={(option) => console.log(option)}
+          labelText="Gender"
+          options={[
+            <div className="flex flex-1 justify-around">
+              <span>Male</span>
+            </div>,
+            <div className="flex  flex-1 justify-around">
+              <span>Female</span>
+            </div>,
+          ]}
+        />
+      );
     } else {
       return "Recap";
     }
@@ -86,14 +109,14 @@ const Form: React.FC = () => {
 
       setFormData({ ...formData, date: newDate });
       setStep((currStep) => currStep + 1);
-
     } else if (stepObj.key === "recap") {
-
-      dispatch(addReminder({
-        content: formData.task,
-        date: formData.date,
-        priority: "bg-red-500"
-      }))
+      dispatch(
+        addReminder({
+          content: formData.task,
+          date: formData.date,
+          priority: "bg-red-500",
+        })
+      );
 
       navigate("/");
     } else {
