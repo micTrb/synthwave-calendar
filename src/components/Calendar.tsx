@@ -46,7 +46,6 @@ const Calendar: React.FC = () => {
 
   const handleSelectDate: (date: Date) => void = (date: Date) => {
     dispatch(CalendarActions.selectDate(date));
-    navigate("add-reminder");
   };
 
   useEffect(() => {}, []);
@@ -136,7 +135,7 @@ const Calendar: React.FC = () => {
                   {hasRem ? (
                     <div
                       className={clsx(
-                        `grid xl:grid-cols-8 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-1 
+                        `grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-1 
                         justify-end mx-auto`
                       )}
                     >
