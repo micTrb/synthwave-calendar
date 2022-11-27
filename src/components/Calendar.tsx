@@ -154,9 +154,11 @@ const Calendar: React.FC = () => {
           })}
 
           <div className="w-11/12 fixed bottom-0">
-            <button className="float-right bottom-0 my-8 px-5 py-2 bg-red-500 text-white text-sm font-bold tracking-wide rounded-full focus:outline-none">
-              Next
-            </button>
+            <div className="float-right
+            bottom-0 my-8 p-6 bg-red-500 
+            text-white text-4xl font-bold rounded-full focus:outline-none">
+              +
+            </div>
           </div>
         </div>
       </div>
