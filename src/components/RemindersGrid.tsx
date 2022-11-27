@@ -19,7 +19,7 @@ const RemindersGrid: React.FC<Props> = ({ reminders, date }) => {
     <>
       {filteredReminders.map((reminder: Reminder) => (
         <Tooltip
-          className="bg-black-100 p-4 "
+          className="bg-black-100 p-4"
           key={reminder.id}
           content={reminder.content}
         >

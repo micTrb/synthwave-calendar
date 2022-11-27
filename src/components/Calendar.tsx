@@ -50,7 +50,7 @@ const Calendar: React.FC = () => {
     <div className="mb-12">
       <Header value={currentDate} onChange={setCurrentDate} />
 
-      <div className="my-12 mx-auto w-full">
+      <div className="my-2 mx-auto w-11/12">
         <button className="bg-green-500" onClick={() => console.log(selectedDate)}>CLICK</button>
         <div
           className="grid grid-cols-7 sm:gap-2 gap-0 border-blue-400 
@@ -59,7 +59,7 @@ const Calendar: React.FC = () => {
           {weekdays.map((day, index) => (
             <div
               key={index}
-              className="h-12 flex items-start justify-end cursor-pointer"
+              className="h-12 flex lg:items-start lg:justify-end cursor-pointer"
             >
               <p className="m-auto sm:text-xl text-md text-yellow-500 uppercase">
                 {day}
@@ -101,15 +101,20 @@ const Calendar: React.FC = () => {
               >
                 <div
                   className={clsx(
-                    `w-full flex flex-col lg:items-end lg:justify-center m-auto`
+                    `w-full flex flex-col 
+                    lg:items-end lg:justify-center 
+                    xl:items-end xl:justify-center 
+                    items-center justify-center 
+                    m-auto`
                   )}
                 >
-                  <p className="lg:my-1 lg:mr-2 lg:text-md text-sm">{day}</p>
+                  <p className="lg:my-1 lg:mr-2 xl:my-1 xl:mr-2 lg:text-md text-sm">{day}</p>
 
                   {hasRem ? (
                     <div
                       className={clsx(
-                        `grid lg:grid-cols-6 md:grid-cols-5 grid-cols-2 gap-1 justify-end mx-auto`
+                        `grid xl:grid-cols-8 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-1 
+                        justify-end mx-auto`
                       )}
                     >
                       {lg ? (

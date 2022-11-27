@@ -20,7 +20,17 @@ const Cell: React.FC<Props> = ({ onClick, className, children, hasReminder }) =>
   const reminders = useSelector( (state: RootState) => state.reminders.reminders );
 
   return (
-    <div onClick={onClick} className={clsx(`w-full lg:h-32 md:h-24 h-12 p-auto`, 
+    <div onClick={onClick} className={clsx(`
+    w-full
+    xl:h-24 
+    lg:h-24
+    md:h-20
+    h-12 
+    sm:rounded-lg
+    rounded-lg
+    p-auto
+    items-center justify-center 
+    `, 
     className)}>
       {children}
     </div>
