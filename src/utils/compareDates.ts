@@ -13,6 +13,5 @@ export function compareDates(dateLeft: Date, dateRight: Date): boolean {
   const newDateLeft = startOfDay(new Date(y1, m1, d1));
   const newDateRight = startOfDay(new Date(y2, m2, d2));
   
-
   return isEqual(newDateLeft, newDateRight);
 }

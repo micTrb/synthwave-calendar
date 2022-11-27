@@ -13,17 +13,16 @@ import { faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 interface Props extends React.PropsWithChildren {
   onClick?: () => void;
   className?: string;
-  hasReminder: Boolean;
 }
 
-const Cell: React.FC<Props> = ({ onClick, className, children, hasReminder }) => {
+const Cell: React.FC<Props> = ({ onClick, className, children }) => {
   const reminders = useSelector( (state: RootState) => state.reminders.reminders );
 
   return (
     <div onClick={onClick} className={clsx(`
     w-full
     xl:h-24 
-    lg:h-24
+    lg:h-28
     md:h-20
     h-12 
     sm:rounded-lg

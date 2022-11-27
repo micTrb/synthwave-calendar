@@ -14,7 +14,9 @@ import useCalendar from "../hooks/useCalendar";
 import { hasReminders } from "../utils/hasReminders";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { isEqual, parseISO, startOfDay } from "date-fns";
-import { compareDates } from '../utils/compareDates';
+import { compareDates } from "../utils/compareDates";
+import { useEffect } from 'react';
+import { generateHours, generateMinutes } from "../utils/generateTimes";
 
 const Calendar: React.FC = () => {
   const navigate = useNavigate();
@@ -44,14 +46,23 @@ const Calendar: React.FC = () => {
 
   const handleSelectDate: (date: Date) => void = (date: Date) => {
     dispatch(CalendarActions.selectDate(date));
+    navigate('add-reminder');
   };
+
+  useEffect(() =>{
+  },[])
 
   return (
     <div className="mb-12">
       <Header value={currentDate} onChange={setCurrentDate} />
 
       <div className="my-2 mx-auto w-11/12">
-        <button className="bg-green-500" onClick={() => console.log(selectedDate)}>CLICK</button>
+        <button
+          className="bg-green-500"
+          onClick={() => console.log(reminders)}
+        >
+          CLICK
+        </button>
         <div
           className="grid grid-cols-7 sm:gap-2 gap-0 border-blue-400 
         border-t border-b border-green-400 items-center justify-center text-center"
@@ -77,25 +88,24 @@ const Calendar: React.FC = () => {
             const day = index + 1;
             const year = startDate.getFullYear();
             const month = startDate.getMonth();
-            const date = startOfDay(new Date(year, month, day));
-
+            const date = new Date(year, month, day);
             let hasRem = hasReminders(reminders, date);
+            
 
             return (
               <Cell
                 key={day}
-                hasReminder={true}
-                onClick={() => handleSelectDate(date)}
+                onClick={() => { handleSelectDate(date) }}
                 className={clsx(
                   `items-center justify-center border-black-500 bg-black-300/40 hover:border-green-500
                 hover:border text-pink-400 cursor-pointer transition-all duration-400`,
                   {
                     "bg-black-300 border-green-500 border-2 hover:border-2":
-                      compareDates(selectedDate, date),
+                      isEqual(selectedDate, date),
                   },
                   {
                     "overflow-auto": hasRem,
-                    "bg-pink-500 text-green-700": hasRem && (md || sm), //always applies
+                    "bg-pink-500/20 text-green-500": hasRem && (md || sm), //always applies
                   }
                 )}
               >
@@ -105,11 +115,30 @@ const Calendar: React.FC = () => {
                     lg:items-end lg:justify-center 
                     xl:items-end xl:justify-center 
                     items-center justify-center 
-                    m-auto`
+                    m-auto`,
+                    {
+                      "w-3/4": sm || md,
+                    }
                   )}
                 >
-                  <p className="lg:my-1 lg:mr-2 xl:my-1 xl:mr-2 lg:text-md text-sm">{day}</p>
+                  <p
+                    className={clsx(
+                      `lg:my-1 lg:mr-2 xl:my-1 xl:mr-2 text-lg`
+                    )}
+                  >
+                    {day}
+                  </p>
 
+                  {/* Mobile reminder visual */}
+                  {(hasRem && (sm||md)) ? (
+                    <p
+                      className={clsx(`w-2/3 h-2 rounded-lg mx-auto
+                    bg-pink-500 lg:my-1 lg:mr-2 xl:my-1 xl:mr-2 lg:text-md text-sm`)}
+                    />
+                  ) : null}
+
+
+                  {/* Desktop reminder visual */}
                   {hasRem ? (
                     <div
                       className={clsx(
