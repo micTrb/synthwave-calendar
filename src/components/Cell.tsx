@@ -21,8 +21,8 @@ const Cell: React.FC<Props> = ({ onClick, className, children }) => {
   return (
     <div onClick={onClick} className={clsx(`
     w-full
-    xl:h-24 
-    lg:h-28
+    xl:h-24
+    lg:h-24
     md:h-20
     h-12 
     sm:rounded-lg
