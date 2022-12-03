@@ -13,8 +13,8 @@ const Timepicker = ({ formData, setFormData }: InputProps) => {
 
   
   return (
-    <div className="flex bg-gray-100">
-      <div className="justify-center mx-auto text-4xl p-2 text-green-500 bg-black-900">
+    <div className="flex bg-black-900 text-green-500">
+      <div className="justify-center mx-auto text-4xl p-2 ">
         <select
           name=""
           id=""

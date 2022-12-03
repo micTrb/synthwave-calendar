@@ -3,12 +3,10 @@ import Cell from "./Cell";
 
 import { sub, format, add, nextMonday } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faAngleRight,
-  faAnglesLeft,
-  faAnglesRight,
-} from "@fortawesome/free-solid-svg-icons";
+import FBackward from '../svg/FBackward.svg'
+import Backward from '../svg/Backward.svg'
+import Forward from '../svg/Forward.svg'
+import FForward from '../svg/FForward.svg'
 
 interface Props {
   value?: Date;
@@ -24,28 +22,36 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
   return (
     <div className="text-white">
       <div className="w-11/12 mx-auto flex flex-row items-center justify-center text-center">
-        <FontAwesomeIcon
+        <img
           onClick={prevYear}
-          icon={faAnglesLeft}
-          className="m-2 text-green-800 xl:text-4xl lg:text-4xl md:text-3xl text-lg transition-all duration-200 cursor-pointer hover:text-green-100"
+          src={FBackward}
+          className="hover:-translate-x-2 hover:shadow-pink-500 hover:shadow-left 
+          hover:border-pink-100 hover:border
+          transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
         />
-        <FontAwesomeIcon
+        <img
           onClick={prevMonth}
-          icon={faAngleLeft}
-          className="m-2 text-green-800 xl:text-4xl lg:text-4xl md:text-3xl text-lg transition-all duration-200 cursor-pointer hover:text-green-100"
+          src={Backward}
+          className="hover:-translate-x-2 hover:shadow-green-500 hover:shadow-left 
+          hover:border-green-100 hover:border
+          transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
         />
 
-        <h1 className="mx-2 text-center xl:text-4xl lg:text-4xl md:text-3xl text-lg">{format(value, "LLLL yyyy")}</h1>
-
-        <FontAwesomeIcon
+        <h1 className="mx-2 text-center xl:text-6xl lg:text-4xl md:text-3xl text-lg">{format(value, "LLLL yyyy")}</h1>
+        
+        <img
           onClick={addMonth}
-          icon={faAngleRight}
-          className="m-2 text-green-800 xl:text-4xl lg:text-4xl md:text-3xl text-lg transition-all duration-200 cursor-pointer hover:text-green-100"
+          src={Forward}
+          className="hover:translate-x-2 hover:shadow-green-500 hover:shadow-left 
+          hover:border-green-100 hover:border
+          transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
         />
-        <FontAwesomeIcon
+        <img
           onClick={addYear}
-          icon={faAnglesRight}
-          className="m-2 text-green-800 xl:text-4xl lg:text-4xl md:text-3xl text-lg transition-all duration-200 cursor-pointer hover:text-green-100"
+          src={FForward}
+          className="hover:translate-x-2 hover:shadow-pink-500 hover:shadow-left 
+          hover:border-pink-100 hover:border
+          transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
         />
       </div>
     </div>

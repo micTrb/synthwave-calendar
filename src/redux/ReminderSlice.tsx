@@ -2,12 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { add } from "date-fns";
 import { generateId } from '../utils/randomId';
+import { m } from "framer-motion";
 
 export enum Priority {
-  NoPriority = "bg-black-200",
-  Low = "bg-green-200",
+  High = "bg-red-500",
   Medium = "bg-yellow-200",
-  High = "bg-red-500"
+  Low = "bg-green-200",
+  NoPriority = "bg-gray-100",
 }
 
 export interface Reminder {

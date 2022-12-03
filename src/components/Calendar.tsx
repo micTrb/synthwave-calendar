@@ -47,21 +47,19 @@ const Calendar: React.FC = () => {
   );
 
   const handleSelectDate: (date: Date) => void = (date: Date) => {
+    navigate('/add-reminder');
     dispatch(CalendarActions.selectDate(date));
   };
 
   useEffect(() => {}, []);
 
   return (
-    <div className="mb-12">
+    <div className="my-24">
       <Header value={currentDate} onChange={setCurrentDate} />
 
       <div className="my-2 mx-auto w-11/12">
-        <button className="bg-green-500" onClick={() => console.log(reminders)}>
-          CLICK
-        </button>
-        <div
-          className="grid grid-cols-7 sm:gap-2 gap-0 border-blue-400 
+    
+        <div className="grid grid-cols-7 sm:gap-2 gap-0 my-4
         border-t border-b border-green-400 items-center justify-center text-center"
         >
           {weekdays.map((day, index) => (
@@ -76,7 +74,7 @@ const Calendar: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-4 gap-2 grid grid-cols-7 items-center justify-center text-center">
+        <div className="my-8 gap-2 grid grid-cols-7 items-center justify-center text-center">
           {Array.from({ length: prefixDays }).map((_, index) => {
             return <div className="m-2" key={index} />;
           })}
@@ -156,9 +154,14 @@ const Calendar: React.FC = () => {
           })}
         </div>
 
-        <Cell className="flex justify-end">
-            <img src={Plus} className="w-full h-full" alt="" />
-        </Cell>
+        <div className="
+        flex w-full h-full my-24 justify-end
+         items-end cursor-pointer bg-black-900">
+          <div className="fixed bottom-10 hover:shadow-green-500 hover:shadow-left 
+        hover:-translate-y-2 transition-all duration-200  rounded-full">
+            <img src={Plus} className="float-right w-20 h-20" alt="" />
+            </div>
+        </div>
       </div>
     </div>
   );
