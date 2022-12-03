@@ -24,7 +24,7 @@ const Cell: React.FC<Props> = ({ onClick, className, children }) => {
     xl:h-24
     lg:h-24
     md:h-20
-    h-20 
+    h-16 
     sm:rounded-lg
     rounded-lg
     p-auto

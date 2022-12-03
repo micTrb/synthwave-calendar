@@ -18,6 +18,8 @@ import { compareDates } from "../utils/compareDates";
 import { useEffect } from "react";
 import { generateHours, generateMinutes } from "../utils/generateTimes";
 
+import Plus from "../svg/plus.svg";
+
 const Calendar: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -152,15 +154,11 @@ const Calendar: React.FC = () => {
           {Array.from({ length: suffixDays }).map((_, index) => {
             return <div key={index} className="" />;
           })}
-
-          <div className="w-11/12 fixed bottom-0">
-            <div className="float-right
-            bottom-0 my-8 p-6 bg-red-500 
-            text-white text-4xl font-bold rounded-full focus:outline-none">
-              +
-            </div>
-          </div>
         </div>
+
+        <Cell className="flex justify-end">
+            <img src={Plus} className="w-full h-full" alt="" />
+        </Cell>
       </div>
     </div>
   );
