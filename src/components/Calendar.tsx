@@ -47,7 +47,6 @@ const Calendar: React.FC = () => {
   );
 
   const handleSelectDate: (date: Date) => void = (date: Date) => {
-    navigate('/add-reminder');
     dispatch(CalendarActions.selectDate(date));
   };
 
@@ -58,8 +57,8 @@ const Calendar: React.FC = () => {
       <Header value={currentDate} onChange={setCurrentDate} />
 
       <div className="my-2 mx-auto w-11/12">
-    
-        <div className="grid grid-cols-7 sm:gap-2 gap-0 my-4
+        <div
+          className="grid grid-cols-7 sm:gap-2 gap-0 my-4
         border-t border-b border-green-400 items-center justify-center text-center"
         >
           {weekdays.map((day, index) => (
@@ -154,13 +153,18 @@ const Calendar: React.FC = () => {
           })}
         </div>
 
-        <div className="
+        <div
+          className="
         flex w-full h-full my-24 justify-end
-         items-end cursor-pointer bg-black-900">
-          <div className="fixed bottom-10 hover:shadow-green-500 hover:shadow-left 
-        hover:-translate-y-2 transition-all duration-200  rounded-full">
+         items-end cursor-pointer bg-black-900"
+        >
+          <button
+            onClick={() => navigate("/add-reminder")}
+            className="fixed bottom-10 hover:shadow-green-500 hover:shadow-left 
+        hover:-translate-y-2 transition-all duration-200  rounded-full"
+          >
             <img src={Plus} className="float-right w-20 h-20" alt="" />
-            </div>
+          </button>
         </div>
       </div>
     </div>

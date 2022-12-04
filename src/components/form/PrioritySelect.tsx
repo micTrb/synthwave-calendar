@@ -13,10 +13,9 @@ const PrioritySelect = ({ formData, setFormData }: InputProps) => {
 
   const renderPriorityBlock: () => JSX.Element[] = () => {
     return Object.entries(Priority).map((key, value) => (
-      <div className="flex flex-col">
+      <div key={key[0]} className="flex flex-col">
         <h1 className="text-white my-2">{key[0]}</h1>
         <div
-          key={value}
           onClick={() => setChecked(key[0])}
           className={clsx(
             `hover:shadow-white hover:shadow-left text-center h-16 rounded-lg 

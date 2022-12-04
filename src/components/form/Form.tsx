@@ -11,6 +11,7 @@ import { createDate } from "../../utils/createDate";
 import { Navigate, useNavigate } from "react-router";
 import { addReminder, Priority } from "../../redux/ReminderSlice";
 import PrioritySelect from "./PrioritySelect";
+import clsx from "clsx";
 
 export interface Step {
   step: number;
@@ -63,7 +64,7 @@ const Form: React.FC = () => {
       text: "Which priority you wanna give?",
     },
     {
-      step: 2,
+      step: 3,
       key: "recap",
       text: "Recap",
     },
@@ -93,8 +94,8 @@ const Form: React.FC = () => {
           ]}
         />
       );
-    } else {
-      return "Recap";
+    } else if (stepObj.key === "recap") {
+      console.log("RECAP");
     }
   };
 
@@ -133,20 +134,32 @@ const Form: React.FC = () => {
         <div className="body">{PageDisplay()}</div>
         <div className="flex justify-center items-center mt-16">
           <button
-            className="m-4 px-4 py-2 text-xl rounded bg-green-500 cursor-pointer"
-            disabled={step === 0}
+            className={clsx(
+              `hover:opacity-100 opacity-70 m-4 px-4 py-2 
+            text-xl rounded bg-green-500 cursor-pointer`
+            )}
             onClick={() => {
               setStep((currStep) => currStep - 1);
             }}
           >
-            <FontAwesomeIcon icon={faArrowLeft} />
+            {stepObj.step === 0 ? (
+              <div
+                className="flex flex-row space-x-4 items-center justify-center"
+                onClick={() => navigate("/")}
+              >
+                <FontAwesomeIcon icon={faArrowLeft} />
+                <p>Back to Calendar</p>
+              </div>
+            ) : (
+              <FontAwesomeIcon icon={faArrowLeft} />
+            )}
           </button>
 
           <button
-            className="m-4 px-4 py-2 text-xl rounded bg-green-500 cursor-pointer"
+            className="hover:opacity-100 opacity-70 m-4 px-4 py-2 text-xl rounded bg-green-500 cursor-pointer"
             onClick={submitForm}
           >
-            {step === formSteps.length - 1 ? (
+            {stepObj.step === formSteps.length - 1 ? (
               "Submit"
             ) : (
               <FontAwesomeIcon icon={faArrowRight} />
