@@ -29,22 +29,21 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
           src={FBackward}
           className="hover:-translate-x-2 hover:shadow-pink-500 hover:shadow-left 
           hover:border-pink-100 hover:border
-          transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
+          transition-all duration-100 w-1/5 h-16 cursor-pointer mx-4"
         />
         <img
           onClick={prevMonth}
           src={Backward}
           className="hover:-translate-x-2 hover:shadow-green-500 hover:shadow-left 
           hover:border-green-100 hover:border
-          transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
+          transition-all duration-100 w-1/5 h-16 cursor-pointer mx-4"
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col h-max">
           <h1
-            className="font-roadrage
+            className="font-horsemen
         month
         font-extrabold
-       
-        mx-2 text-center xl:text-8xl lg:text-4xl 
+        mx-2 text-center xl:text-6xl lg:text-4xl 
         md:text-3xl text-lg"
           >
             {format(value, "LLLL")}
@@ -66,14 +65,14 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
           src={Forward}
           className="hover:translate-x-2 hover:shadow-green-500 hover:shadow-left 
           hover:border-green-100 hover:border
-          transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
+          transition-all duration-100 w-1/5 h-16 cursor-pointer mx-4"
         />
         <img
           onClick={addYear}
           src={FForward}
           className="hover:translate-x-2 hover:shadow-pink-500 hover:shadow-left 
           hover:border-pink-100 hover:border
-          transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
+          transition-all duration-100 w-1/5 h-16 cursor-pointer mx-4"
         />
       </div>
     </div>
