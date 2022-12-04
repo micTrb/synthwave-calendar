@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { generateHours, generateMinutes } from "../../utils/generateTimes";
 import { FormData } from './Form';
@@ -7,13 +8,23 @@ interface InputProps {
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
+
+const animations = {
+  initial: { opacity: 0, x: 100 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -100 },
+};
+
+
 const Timepicker = ({ formData, setFormData }: InputProps) => {
 
-
-
-  
   return (
-    <div className="flex bg-black-900 text-green-500">
+    <motion.div className="flex bg-black-900 text-green-500"
+    variants={animations}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+    >
       <div className="justify-center mx-auto text-4xl p-2 ">
         <select
           name=""
@@ -56,7 +67,7 @@ const Timepicker = ({ formData, setFormData }: InputProps) => {
           <option value="PM">PM</option>
         </select>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,12 +1,14 @@
 import React from "react";
 import Cell from "./Cell";
 
+import "../css/fonts.scss";
+
 import { sub, format, add, nextMonday } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import FBackward from '../svg/FBackward.svg'
-import Backward from '../svg/Backward.svg'
-import Forward from '../svg/Forward.svg'
-import FForward from '../svg/FForward.svg'
+import FBackward from "../svg/FBackward.svg";
+import Backward from "../svg/Backward.svg";
+import Forward from "../svg/Forward.svg";
+import FForward from "../svg/FForward.svg";
 
 interface Props {
   value?: Date;
@@ -36,9 +38,29 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
           hover:border-green-100 hover:border
           transition-all duration-100 w-16 h-16 cursor-pointer mx-4"
         />
+        <div className="flex flex-col">
+          <h1
+            className="font-roadrage
+        month
+        font-extrabold
+       
+        mx-2 text-center xl:text-8xl lg:text-4xl 
+        md:text-3xl text-lg"
+          >
+            {format(value, "LLLL")}
+          </h1>
+          <h1
+            className="font-cyberspaceFront uppercase
+            year glow
+        font-extrabold
+       
+        mx-2 text-center xl:text-6xl lg:text-4xl
+         md:text-3xl text-lg"
+          >
+            {format(value, "yyyy")}
+          </h1>
+        </div>
 
-        <h1 className="mx-2 text-center xl:text-6xl lg:text-4xl md:text-3xl text-lg">{format(value, "LLLL yyyy")}</h1>
-        
         <img
           onClick={addMonth}
           src={Forward}

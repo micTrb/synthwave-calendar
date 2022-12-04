@@ -38,6 +38,10 @@ const Calendar: React.FC = () => {
     suffixDays,
   ] = useCalendar(new Date());
 
+  useEffect(() => {
+  }, []);
+
+
   const reminders = useSelector(
     (state: RootState) => state.reminders.reminders
   );
@@ -50,7 +54,7 @@ const Calendar: React.FC = () => {
     dispatch(CalendarActions.selectDate(date));
   };
 
-  useEffect(() => {}, []);
+
 
   return (
     <div className="my-24">
@@ -96,7 +100,7 @@ const Calendar: React.FC = () => {
                 hover:border text-pink-400 cursor-pointer transition-all duration-400`,
                   {
                     "bg-black-300 border-green-500 border-2 hover:border-2":
-                      isEqual(selectedDate, date),
+                      compareDates(selectedDate, date),
                   },
                   {
                     "overflow-auto": hasRem,
@@ -116,9 +120,7 @@ const Calendar: React.FC = () => {
                     }
                   )}
                 >
-                  <p
-                    className={clsx(`lg:my-1 lg:mr-2 xl:my-1 xl:mr-2 text-lg`)}
-                  >
+                  <p className={clsx(`lg:my-1 lg:mr-2 xl:my-1 xl:mr-2 text-lg font-sans`)}>
                     {day}
                   </p>
 

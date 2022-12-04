@@ -12,6 +12,7 @@ import { Navigate, useNavigate } from "react-router";
 import { addReminder, Priority } from "../../redux/ReminderSlice";
 import PrioritySelect from "./PrioritySelect";
 import clsx from "clsx";
+import Recap from "./Recap";
 
 export interface Step {
   step: number;
@@ -82,20 +83,12 @@ const Form: React.FC = () => {
     } else if (stepObj.key === "priority") {
       return (
         <PrioritySelect
-          onChange={(option) => console.log(option)}
-          labelText="Gender"
-          options={[
-            <div className="flex flex-1 justify-around">
-              <span>Male</span>
-            </div>,
-            <div className="flex  flex-1 justify-around">
-              <span>Female</span>
-            </div>,
-          ]}
+          formData={formData}
+          setFormData={setFormData}
         />
       );
     } else if (stepObj.key === "recap") {
-      console.log("RECAP");
+      return <Recap formData={formData} setFormData={() => {}} />;
     }
   };
 

@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { add } from "date-fns";
-import { generateId } from '../utils/randomId';
+import { generateId } from "../utils/randomId";
 import { m } from "framer-motion";
 
 export enum Priority {
-  High = "bg-red-500",
-  Medium = "bg-yellow-200",
-  Low = "bg-green-200",
-  NoPriority = "bg-gray-100",
+  "High" = "bg-red-500",
+  "Medium" = "bg-yellow-200",
+  "Low" = "bg-green-200",
+  "No Priority" = "bg-gray-100",
 }
 
 export interface Reminder {
   id: string;
   content: string;
   date: Date;
-  priority: Priority
-};
+  priority: Priority;
+}
 export interface ReminderState {
   reminders: Array<Reminder>;
 }
@@ -27,39 +27,38 @@ const initialState: ReminderState = {
       id: generateId(),
       content: "Write essay 2",
       date: new Date(2022, 11, 4),
-      priority: Priority.High
+      priority: Priority.High,
     },
     {
       id: generateId(),
       content: "Write poem",
       date: new Date(2022, 11, 4),
-      priority: Priority.Medium
+      priority: Priority.Medium,
     },
     {
       id: generateId(),
       content: "Call bob",
       date: new Date(2022, 11, 4),
-      priority: Priority.Low
+      priority: Priority.Low,
     },
     {
       id: generateId(),
       content: "Write essay 2",
       date: new Date(2022, 11, 4),
-      priority: Priority.High
+      priority: Priority.High,
     },
     {
       id: generateId(),
       content: "Write poem",
       date: new Date(2022, 11, 4),
-      priority: Priority.Medium
+      priority: Priority.Medium,
     },
     {
       id: generateId(),
       content: "Call bob",
       date: new Date(2022, 11, 4),
-      priority: Priority.Low
+      priority: Priority.Low,
     },
-
   ],
 };
 
@@ -72,7 +71,7 @@ export const reminderSlice = createSlice({
         id: generateId(),
         content: action.payload.content,
         date: action.payload.date,
-        priority: action.payload.priority
+        priority: action.payload.priority,
       };
       state.reminders.push(newReminder);
     },
@@ -92,6 +91,7 @@ export const reminderSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addReminder, deleteReminder, editReminder } = reminderSlice.actions;
+export const { addReminder, deleteReminder, editReminder } =
+  reminderSlice.actions;
 
 export default reminderSlice.reducer;

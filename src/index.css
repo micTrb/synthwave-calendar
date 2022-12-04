@@ -3,7 +3,62 @@
 @tailwind utilities;
 
 
+@layer base {
+  @font-face {
+    font-family: Cyberspace;
+    src: url(./fonts/Cyberspace/Cyberspace.otf) format("opentype");
+  }
+  @font-face {
+    font-family: CyberspaceFront;
+    src: url(./fonts/Cyberspace/CyberspaceFront.otf) format("opentype");
+  }
+  
+  @font-face {
+    font-family: Horsemen;
+    src: url(./fonts/Horsemen/Horsemen.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Streamster;
+    src: url(./fonts/Streamster/Streamster.ttf) format("ttf");
+  }
+
+  @font-face {
+    font-family: Indelible;
+    src: url(./fonts/Indelible/Indelible.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Blaster;
+    src: url(./fonts/Blaster/BlasterFont-Demo.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Overglow;
+    src: url(./fonts/Overglow/OverglowFont-Demo.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Outrun;
+    src: url(./fonts/Outrun/Outrun\ future.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Rocket;
+    src: url(./fonts/Rocket/Rocket\ Clouds.ttf) format("truetype");
+  }
+
+  @font-face {
+    font-family: RoadRage;
+    src: url(./fonts/RoadRage/Road_Rage.otf) format("truetype");
+  }
+}
+
+
+
+
+
 html, body {
   /* background-color: #212121; */
-  font-family: 'Roboto Flex', sans-serif;
-} 
+  
+}

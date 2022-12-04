@@ -1,10 +1,26 @@
-/** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
+      fontFamily: {
+        cyberspace: ['Cyberspace', ...defaultTheme.fontFamily.sans],
+        cyberspaceFront: ['CyberspaceFront', ...defaultTheme.fontFamily.sans],
+        horsemen: ['Horsemen', ...defaultTheme.fontFamily.sans],
+        streamster: ['Streamster', ...defaultTheme.fontFamily.mono],
+        indelible: ['Indelible', ...defaultTheme.fontFamily.sans],
+        blaster: ['Blaster', ...defaultTheme.fontFamily.sans],
+        overglow: ['Overglow', ...defaultTheme.fontFamily.sans],
+        outrun: ['Outrun', ...defaultTheme.fontFamily.sans],
+        rocket: ['Rocket', ...defaultTheme.fontFamily.sans],
+        roadrage: ['RoadRage', ...defaultTheme.fontFamily.sans],
+
+
+      },
       screens: {
         'sm': { 'min': '640px', 'max': '767px' },
         'md': { 'min': '768px', 'max': '1023px' },

@@ -16,8 +16,6 @@ const TaskName = ({ formData, setFormData }: InputProps) => {
     exit: { opacity: 0, x: -100 }
   }
 
- 
-  
   return (
     <motion.div
       className="flex flex-col"
@@ -27,9 +25,13 @@ const TaskName = ({ formData, setFormData }: InputProps) => {
       exit="exit"
     >
       <input
-        className="w-1/4 mx-auto bg-black-900 text-white border-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-         border-green-500  
-        text-xl rounded-lg p-4"
+        className="w-1/4 mx-auto bg-black-900 text-white
+        hover:border-green-500/60 border-green-300/30 border-2 
+          hover:opacity-100 focus:opacity-100  opacity-80
+          cursor-pointer 
+          focus:outline-none focus:border-green-500 
+          transition-all duration-200
+          text-xl rounded-lg p-4"
         type="text"
         placeholder="First Name..."
         value={formData.task}
