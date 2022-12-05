@@ -9,6 +9,7 @@ import FBackward from "../svg/FBackward.svg";
 import Backward from "../svg/Backward.svg";
 import Forward from "../svg/Forward.svg";
 import FForward from "../svg/FForward.svg";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   value?: Date;
@@ -23,28 +24,15 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
 
   return (
     <div className="text-white">
-      <div className="w-11/12 mx-auto flex flex-row items-center justify-center text-center">
-        <img
-          onClick={prevYear}
-          src={FBackward}
-          className="hover:-translate-x-2 hover:shadow-pink-500 hover:shadow-left 
-          hover:border-pink-100 hover:border
-          transition-all duration-100 w-1/5 h-16 cursor-pointer mx-4"
-        />
-        <img
-          onClick={prevMonth}
-          src={Backward}
-          className="hover:-translate-x-2 hover:shadow-green-500 hover:shadow-left 
-          hover:border-green-100 hover:border
-          transition-all duration-100 w-1/5 h-16 cursor-pointer mx-4"
-        />
+      <div className="w-full mx-auto flex flex-col items-center justify-center text-center space-x-2">
         <div className="flex flex-col h-max">
           <h1
             className="font-horsemen
-        month
+        retrotext
         font-extrabold
+        px-16 pt-16 pb-8
         mx-2 text-center xl:text-6xl lg:text-4xl 
-        md:text-3xl text-lg"
+        md:text-3xl text-3xl"
           >
             {format(value, "LLLL")}
           </h1>
@@ -54,26 +42,42 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
         font-extrabold
        
         mx-2 text-center xl:text-6xl lg:text-4xl
-         md:text-3xl text-lg"
+         md:text-3xl text-3xl"
           >
             {format(value, "yyyy")}
           </h1>
         </div>
 
-        <img
-          onClick={addMonth}
-          src={Forward}
-          className="hover:translate-x-2 hover:shadow-green-500 hover:shadow-left 
-          hover:border-green-100 hover:border
-          transition-all duration-100 w-1/5 h-16 cursor-pointer mx-4"
-        />
-        <img
-          onClick={addYear}
-          src={FForward}
-          className="hover:translate-x-2 hover:shadow-pink-500 hover:shadow-left 
+        <div className="my-12 space-x-8 w-full flex flex-row items-center justify-center mx-auto">
+          <img
+            onClick={prevYear}
+            src={FBackward}
+            className="hover:-translate-x-2 hover:shadow-pink-500 hover:shadow-left 
           hover:border-pink-100 hover:border
-          transition-all duration-100 w-1/5 h-16 cursor-pointer mx-4"
-        />
+          transition-all duration-100 cursor-pointer w-12 h-12"
+          />
+          <img
+            onClick={prevMonth}
+            src={Backward}
+            className="hover:-translate-x-2 hover:shadow-green-500 hover:shadow-left 
+          hover:border-green-100 hover:border
+          transition-all duration-100 cursor-pointer w-12 h-12"
+          />
+          <img
+            onClick={addMonth}
+            src={Forward}
+            className="hover:translate-x-2 hover:shadow-green-500 hover:shadow-left 
+          hover:border-green-100 hover:border
+          transition-all duration-100 cursor-pointer w-12 h-12"
+          />
+          <img
+            onClick={addYear}
+            src={FForward}
+            className="hover:translate-x-2 hover:shadow-pink-500 hover:shadow-left 
+          hover:border-pink-100 hover:border
+          transition-all duration-100 cursor-pointer w-12 h-12"
+          />
+        </div>
       </div>
     </div>
   );
