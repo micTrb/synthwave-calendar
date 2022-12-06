@@ -49,7 +49,7 @@ const PrioritySelect = ({ formData, setFormData }: InputProps) => {
               `hover:shadow-white hover:shadow-left text-center h-16 rounded-lg 
             items-center justify-center border-black-500 ${key[1]} opacity-50 hover:opacity-80
         hover:border text-pink-400 cursor-pointer transition-all duration-400`,
-              { "hover:opacity-100 opacity-[1]": checked === key[1] }
+              { "hover:opacity-100 opacity-[1] hover:shadow-white shadow-yellow": checked === key[1] }
             )}
           ></div>
         </motion.div>
