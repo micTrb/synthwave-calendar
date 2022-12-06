@@ -44,7 +44,7 @@ const Form: React.FC = () => {
     hours: "00",
     minutes: "00",
     ap: "AM",
-    priority: Priority.NoPriority,
+    priority: Priority["No Priority"],
     date: new Date(),
   });
 
@@ -78,7 +78,8 @@ const Form: React.FC = () => {
   const PageDisplay = () => {
     if (stepObj.key === "task") {
       return <TaskName formData={formData} setFormData={setFormData} />;
-    } else if (stepObj.key === "time") {
+    } 
+    else if (stepObj.key === "time") {
       return <Timepicker formData={formData} setFormData={setFormData} />;
     } else if (stepObj.key === "priority") {
       return (
@@ -94,6 +95,9 @@ const Form: React.FC = () => {
 
   const submitForm: () => void = () => {
     if (stepObj.key === "time") {
+
+      console.log("time submit");
+      
       const newDate = createDate(
         selectedDate,
         formData.hours,
@@ -103,12 +107,16 @@ const Form: React.FC = () => {
 
       setFormData({ ...formData, date: newDate });
       setStep((currStep) => currStep + 1);
+      
     } else if (stepObj.key === "recap") {
+
+      console.log(formData);
+      
       dispatch(
         addReminder({
           content: formData.task,
           date: formData.date,
-          priority: "bg-red-500",
+          priority: formData.priority,
         })
       );
 

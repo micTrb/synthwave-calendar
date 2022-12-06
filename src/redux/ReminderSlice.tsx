@@ -67,12 +67,17 @@ export const reminderSlice = createSlice({
   initialState,
   reducers: {
     addReminder: (state, action) => {
+
+
       let newReminder = {
         id: generateId(),
         content: action.payload.content,
         date: action.payload.date,
         priority: action.payload.priority,
       };
+
+      console.log(newReminder);
+      
       state.reminders.push(newReminder);
     },
     deleteReminder: (state, action) => {

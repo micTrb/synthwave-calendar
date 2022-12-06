@@ -20,8 +20,8 @@ const PrioritySelect = ({ formData, setFormData }: InputProps) => {
   const [checked, setChecked] = useState<Priority>(Priority["No Priority"]);
 
   const handleSelectPriority = (p: Priority) => {
+        
     setChecked(p);
-
     setFormData({
       ...formData,
       priority: p,
