@@ -15,7 +15,7 @@ import Form from "./components/form/Form";
 const App = () => {
   return (
     <Router>
-      <div className="items-center mt-4 sm:w-11/12 w-full h-screen mx-auto">
+      <div className="items-center justify-center w-full mx-auto">
         <Routes>
           <Route path="/" element={<Calendar />} />
           <Route path="/add-reminder" element={<Form />} />

@@ -57,7 +57,7 @@ const Calendar: React.FC = () => {
 
 
   return (
-    <div className="my-24">
+    <div className="my-24 w-full">
       <Header value={currentDate} onChange={setCurrentDate} />
 
       <div className="my-2 mx-auto w-11/12">

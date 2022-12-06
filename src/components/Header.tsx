@@ -23,7 +23,7 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
   const addYear = () => onChange && onChange(add(value, { years: 1 }));
 
   return (
-    <div className="text-white">
+    <div className="my-2 mx-auto w-11/12 text-white">
       <div className="w-full mx-auto flex flex-col items-center justify-center text-center space-x-2">
         <div className="flex flex-col h-max">
           <h1
