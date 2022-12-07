@@ -2,17 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  overflow-x: hidden;
+  background-color: black;
+}
+
+.background {
+  background: url(./images/bg.svg);
+  height: 100vh;
+  width: 100vw;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size:     contain;
+}
 
 @layer base {
   @font-face {
     font-family: Cyberspace;
     src: url(./fonts/Cyberspace/Cyberspace.otf) format("opentype");
   }
+
   @font-face {
     font-family: CyberspaceFront;
     src: url(./fonts/Cyberspace/CyberspaceFront.otf) format("opentype");
   }
-  
+
   @font-face {
     font-family: Horsemen;
     src: url(./fonts/Horsemen/Horsemen.otf) format("opentype");
@@ -52,13 +67,39 @@
     font-family: RoadRage;
     src: url(./fonts/RoadRage/Road_Rage.otf) format("truetype");
   }
+
+  @font-face {
+    font-family: Digit;
+    src: url(./fonts/Digital/DS-DIGI.TTF) format("truetype");
+  }
+
+  @font-face {
+    font-family: Rider;
+    src: url(./fonts/Rider/RocketRinder-yV5d.ttf) format("truetype");
+  }
+
+  @font-face {
+    font-family: Glitch;
+    src: url(./fonts/Glitch/Glitch\ inside.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Xirod;
+    src: url(./fonts/Xirod/xirod.ttf) format("truetype");
+  }
+
+  @font-face {
+    font-family: BackTTF;
+    src: url(./fonts/Back/BTTF.ttf) format("truetype");
+  }
 }
 
 
 
 
 
-html, body {
+html,
+body {
   /* background-color: #212121; */
-  
+
 }

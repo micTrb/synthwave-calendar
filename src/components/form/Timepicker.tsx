@@ -29,7 +29,7 @@ const Timepicker = ({ formData, setFormData }: InputProps) => {
         <select
           name=""
           id=""
-          className="px-2 outline-none appearance-none bg-black-900"
+          className="font-digit text-6xl px-2 outline-none appearance-none bg-black-900"
           onChange={(e) => {
             setFormData({ ...formData, hours: e.target.value });
           }}
@@ -40,11 +40,12 @@ const Timepicker = ({ formData, setFormData }: InputProps) => {
             </option>
           ))}
         </select>
-        <span className="px-2">:</span>
+
+        <span className="px-2 font-digit text-6xl">:</span>
         <select
           name=""
           id=""
-          className="px-2 outline-none appearance-none bg-transparent bg-black-900"
+          className="font-digit text-6xl px-2 outline-none appearance-none bg-transparent bg-black-900"
           onChange={(e) => {
             setFormData({ ...formData, minutes: e.target.value });
           }}
@@ -58,7 +59,7 @@ const Timepicker = ({ formData, setFormData }: InputProps) => {
         <select
           name=""
           id=""
-          className="px-2 outline-none appearance-none bg-transparent bg-black-900"
+          className="font-digit text-6xl px-2 outline-none appearance-none bg-transparent bg-black-900"
           onChange={(e) => {
             setFormData({ ...formData, ap: e.target.value });
           }}

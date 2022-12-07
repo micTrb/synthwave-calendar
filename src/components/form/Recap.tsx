@@ -19,36 +19,48 @@ const animations = {
 const Recap = ({ formData, setFormData }: InputProps) => {
   return (
     <motion.div
-      className="flex flex-col text-white w-1/2 mx-auto"
+      className="flex flex-col text-white w-1/4 mx-auto"
       variants={animations}
       initial="initial"
       animate="animate"
       exit="exit"
     >
-      <div className="text-white text-2xl flex flex-row space-x-4">
-        <h1 className="text-bold">Task: </h1>
-        <p className="text-bold">{formData.task}</p>
+      <div className="text-white text-2xl font-roadrage flex flex-row space-x-4 items-center justify-center">
+        <h1 className="text-bold text-4xl ">Task: </h1>
+        <p className="text-bold font-cyberspace">{formData.task}</p>
       </div>
-      <p>{format(formData.date, "MM/dd/yyyy")}</p>
-      <p>
-        {formData.hours}:{formData.minutes} {formData.ap}
-      </p>
-      <p>
-        {
-          Object.keys(Priority)[
-            Object.values(Priority).indexOf(formData.priority)
-          ]
-        }
-      </p>
-      <p
-        className={clsx(
-          `w-12 text-center h-12 rounded-lg 
+
+      <div className="text-white text-2xl font-digit flex flex-row space-x-4 items-center justify-start text-start">
+
+        <h1 className="text-bold text-4xl ">Date: </h1>
+        <p className="text-bold">{format(formData.date, "MM/dd/yyyy")}</p>
+
+      </div>
+
+
+      <div className="text-white text-2xl font-digit flex flex-row space-x-4 items-center justify-start text-start">
+
+        <h1 className="text-bold text-4xl ">Time: </h1>
+        <p className="text-bold"> {formData.hours}:{formData.minutes} {formData.ap}</p>
+
+      </div>
+
+      <div className="text-white text-2xl font-digit flex flex-row space-x-4 items-center justify-start text-start">
+
+        <h1 className="text-bold text-4xl ">Priority: </h1>
+        {Object.keys(Priority)[Object.values(Priority).indexOf(formData.priority)]}
+        <p
+          className={clsx(
+            `w-12 text-center h-12 rounded-lg 
             items-center justify-center border-black-500 ${formData.priority} 
             
         `
-        )}
-      ></p>
-    </motion.div>
+          )}
+        ></p>
+      </div>
+
+
+    </motion.div >
   );
 };
 

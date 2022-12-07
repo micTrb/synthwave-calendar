@@ -129,10 +129,10 @@ const Form: React.FC = () => {
   return (
     <div className="h-screen w-full flex items-center justify-center">
       <div className="m-auto w-full">
-        <div className="my-8">
-          <h1 className="text-white text-center text-3xl">{stepObj.text}</h1>
+        <div className="my-8 mx-4">
+          <h1 className="font-roadrage text-white text-center lg:text-[4rem] md:text-[3rem] text-[2rem]">{stepObj.text}</h1>
         </div>
-        <div className="body">{PageDisplay()}</div>
+        <div className="overflow-hidden">{PageDisplay()}</div>
         <div className="flex justify-center items-center mt-16">
           <button
             className={clsx(
@@ -149,7 +149,7 @@ const Form: React.FC = () => {
                 onClick={() => navigate("/")}
               >
                 <FontAwesomeIcon icon={faArrowLeft} />
-                <p>Back to Calendar</p>
+                <p>Back</p>
               </div>
             ) : (
               <FontAwesomeIcon icon={faArrowLeft} />

@@ -26,25 +26,25 @@ const initialState: ReminderState = {
     {
       id: generateId(),
       content: "Write essay 2",
-      date: new Date(2022, 11, 4),
+      date: new Date(),
       priority: Priority.High,
     },
     {
       id: generateId(),
       content: "Write poem",
-      date: new Date(2022, 11, 4),
+      date: new Date(),
       priority: Priority.Medium,
     },
     {
       id: generateId(),
       content: "Call bob",
-      date: new Date(2022, 11, 4),
+      date: new Date(),
       priority: Priority.Low,
     },
     {
       id: generateId(),
       content: "Write essay 2",
-      date: new Date(2022, 11, 4),
+      date: new Date(),
       priority: Priority.High,
     },
     {

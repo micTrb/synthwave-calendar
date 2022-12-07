@@ -28,13 +28,10 @@ const PrioritySelect = ({ formData, setFormData }: InputProps) => {
     });
   };
 
-
-
-
   const renderPriorityBlock: () => JSX.Element[] = () => {
     
     return Object.entries(Priority).map((key, value) => {
-      
+
       return (
         <motion.div key={key[0]} className="flex flex-col"
         variants={animations}
@@ -42,7 +39,7 @@ const PrioritySelect = ({ formData, setFormData }: InputProps) => {
       animate="animate"
       exit="exit"
         >
-          <h1 className="text-white my-2">{key[0]}</h1>
+          <h1 className="text-white text-xl my-2 font-roadrage">{key[0]}</h1>
           <div
             onClick={() => handleSelectPriority(key[1])}
             className={clsx(

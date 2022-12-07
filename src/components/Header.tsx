@@ -30,9 +30,9 @@ export const Header: React.FC<Props> = ({ value = new Date(), onChange }) => {
             className="font-horsemen
         retrotext
         font-extrabold
-        px-16 pt-16 pb-8
+        px-16 pt-16 pb-6
         mx-2 text-center xl:text-6xl lg:text-4xl 
-        md:text-3xl text-3xl"
+        md:text-4xl text-3xl"
           >
             {format(value, "LLLL")}
           </h1>

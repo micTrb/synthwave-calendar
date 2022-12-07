@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import Cell from "./Cell";
 import clsx from "clsx";
+import '../css/fonts.scss';
 
 import { weekdays } from "../configs/Weekdays";
 import { Header } from "./Header";
@@ -62,22 +63,23 @@ const Calendar: React.FC = () => {
 
       <div className="my-2 mx-auto w-11/12">
         <div
-          className="grid grid-cols-7 sm:gap-2 gap-0 my-4
-        border-t border-b border-green-400 items-center justify-center text-center"
+          className="grid grid-cols-7 sm:gap-2 gap-0 my-4 font-backTTF 
+        border-t border-b border-green-400 items-center justify-center text-center glow-yellow 
+        lg:text-2xl md:text-xl text-lg text-purple-600"
         >
           {weekdays.map((day, index) => (
             <div
               key={index}
               className="h-12 flex lg:items-start lg:justify-end cursor-pointer"
             >
-              <p className="m-auto sm:text-xl text-md text-yellow-500 uppercase">
+              <p className="m-auto lg:text-xl md:text-md text-sm text-yellow-500 uppercase">
                 {day}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="my-8 gap-2 grid grid-cols-7 items-center justify-center text-center">
+        <div className="my-8 gap-2 grid grid-cols-7 items-center justify-center text-center ">
           {Array.from({ length: prefixDays }).map((_, index) => {
             return <div className="m-2" key={index} />;
           })}
@@ -120,7 +122,7 @@ const Calendar: React.FC = () => {
                     }
                   )}
                 >
-                  <p className={clsx(`lg:my-1 lg:mr-2 xl:my-1 xl:mr-2 text-lg font-sans`)}>
+                  <p className={clsx(`font-backTTF lg:my-1 lg:mr-2 xl:my-1 xl:mr-2 text-lg`)}>
                     {day}
                   </p>
 

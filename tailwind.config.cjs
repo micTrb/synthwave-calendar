@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'retrowave': "url('./src/images/bg.svg')",
+      },
       fontFamily: {
         cyberspace: ['Cyberspace', ...defaultTheme.fontFamily.sans],
         cyberspaceFront: ['CyberspaceFront', ...defaultTheme.fontFamily.sans],
@@ -18,6 +21,12 @@ module.exports = {
         outrun: ['Outrun', ...defaultTheme.fontFamily.sans],
         rocket: ['Rocket', ...defaultTheme.fontFamily.sans],
         roadrage: ['RoadRage', ...defaultTheme.fontFamily.sans],
+        digit: ['Digit', ...defaultTheme.fontFamily.sans],
+        rider: ['Rider', ...defaultTheme.fontFamily.sans],
+        glitch: ['Glitch', ...defaultTheme.fontFamily.sans],
+        xirod: ['Xirod', ...defaultTheme.fontFamily.sans],
+        backTTF: ['BackTTF', ...defaultTheme.fontFamily.sans],
+        
 
 
       },
