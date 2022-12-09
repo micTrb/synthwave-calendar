@@ -9,10 +9,12 @@ import { RootState } from "../../store";
 import { setHours } from "date-fns/esm";
 import { createDate } from "../../utils/createDate";
 import { Navigate, useNavigate } from "react-router";
-import { addReminder, Priority } from "../../redux/ReminderSlice";
+import { addReminder, editReminder, Priority, Reminder } from "../../redux/ReminderSlice";
 import PrioritySelect from "./PrioritySelect";
 import clsx from "clsx";
 import Recap from "./Recap";
+import { useParams } from "react-router-dom";
+
 
 export interface Step {
   step: number;
@@ -29,9 +31,18 @@ export interface FormData {
   date: Date;
 }
 
-const Form: React.FC = () => {
+const EditForm: React.FC = ( ) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let params = useParams();
+
+
+  const reminders = useSelector(
+    (state: RootState) => state.reminders.reminders
+  );
+
+
+  const reminder = reminders.find(el => el.id === params.id);
 
   const selectedDate = useSelector(
     (state: RootState) => state.calendar.selectedDate
@@ -40,13 +51,14 @@ const Form: React.FC = () => {
   const [step, setStep] = useState(0);
 
   const [formData, setFormData] = useState<FormData>({
-    task: "",
-    hours: "04",
-    minutes: "15",
-    ap: "PM",
+    task: reminder!.content,
+    hours: reminder!.date.getHours().toString(),
+    minutes: reminder!.date.getMinutes().toString(),
+    ap: "AM",
     priority: Priority["No Priority"],
     date: new Date(),
   });
+
 
   const formSteps: Step[] = [
     {
@@ -100,8 +112,8 @@ const Form: React.FC = () => {
       
       const newDate = createDate(
         selectedDate,
-        formData.hours,
-        formData.minutes,
+        formData?.hours,
+        formData?.minutes,
         formData.ap
       );
 
@@ -113,7 +125,8 @@ const Form: React.FC = () => {
       console.log(formData);
       
       dispatch(
-        addReminder({
+        editReminder({
+          id: reminder?.id,
           content: formData.task,
           date: formData.date,
           priority: formData.priority,
@@ -172,4 +185,4 @@ const Form: React.FC = () => {
   );
 };
 
-export default Form;
+export default EditForm;

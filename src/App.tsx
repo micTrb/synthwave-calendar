@@ -12,6 +12,7 @@ import {
 
 import CreateReminder from "./components/CreateReminder";
 import Form from "./components/form/Form";
+import EditForm from './components/form/EditForm';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Calendar />} />
           <Route path="/add-reminder" element={<Form />} />
+          <Route path="/edit-reminder/:id" element={<EditForm />} />
         </Routes>
       </div>
     </Router>

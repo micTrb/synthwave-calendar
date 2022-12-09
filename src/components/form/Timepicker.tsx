@@ -19,7 +19,7 @@ const animations = {
 const Timepicker = ({ formData, setFormData }: InputProps) => {
 
   return (
-    <motion.div className="flex bg-black-900 text-green-500"
+    <motion.div className="flex bg-transparent text-green-500"
     variants={animations}
     initial="initial"
     animate="animate"
@@ -29,7 +29,8 @@ const Timepicker = ({ formData, setFormData }: InputProps) => {
         <select
           name=""
           id=""
-          className="font-digit text-6xl px-2 outline-none appearance-none bg-black-900"
+          value={formData.hours}
+          className="font-digit text-6xl px-2 outline-none appearance-none bg-transparent bg-black-900"
           onChange={(e) => {
             setFormData({ ...formData, hours: e.target.value });
           }}
@@ -45,6 +46,7 @@ const Timepicker = ({ formData, setFormData }: InputProps) => {
         <select
           name=""
           id=""
+          value={formData.minutes}
           className="font-digit text-6xl px-2 outline-none appearance-none bg-transparent bg-black-900"
           onChange={(e) => {
             setFormData({ ...formData, minutes: e.target.value });
@@ -59,6 +61,7 @@ const Timepicker = ({ formData, setFormData }: InputProps) => {
         <select
           name=""
           id=""
+          value={formData.ap}
           className="font-digit text-6xl px-2 outline-none appearance-none bg-transparent bg-black-900"
           onChange={(e) => {
             setFormData({ ...formData, ap: e.target.value });

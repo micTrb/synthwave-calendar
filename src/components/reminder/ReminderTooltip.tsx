@@ -3,6 +3,7 @@ import { Priority, Reminder } from "../../redux/ReminderSlice";
 import { format } from 'date-fns';
 import clsx from 'clsx';
 import { getKeyByValue } from '../../utils/getKeyByValue';
+import { useNavigate } from 'react-router';
 
 interface Props {
 	reminder: Reminder;
@@ -12,6 +13,7 @@ interface Props {
 const ReminderTooltip: React.FC<Props> = ({ reminder }) => {
 
 	const { content, date, priority, } = reminder;
+	const navigate = useNavigate();
 
 
 	return (
@@ -48,6 +50,7 @@ const ReminderTooltip: React.FC<Props> = ({ reminder }) => {
 
 
 			<button
+			onClick={() => navigate('/edit-reminder/'+reminder.id)}
 				className="text-white hover:bg-opacity-100 
 				
 				bg-opacity-80 px-4 py-2 text-xl rounded bg-green-500 cursor-pointer"

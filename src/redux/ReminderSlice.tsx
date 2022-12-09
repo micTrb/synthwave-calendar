@@ -68,7 +68,6 @@ export const reminderSlice = createSlice({
   reducers: {
     addReminder: (state, action) => {
 
-
       let newReminder = {
         id: generateId(),
         content: action.payload.content,
@@ -76,8 +75,6 @@ export const reminderSlice = createSlice({
         priority: action.payload.priority,
       };
 
-      console.log(newReminder);
-      
       state.reminders.push(newReminder);
     },
     deleteReminder: (state, action) => {
@@ -88,10 +85,27 @@ export const reminderSlice = createSlice({
     },
     editReminder: (state, action) => {
       let { reminders } = state;
+
       state.reminders = reminders.map((item) =>
-        item.id === action.payload.id ? action.payload : item
-      );
+        item.id === action.payload.id ?
+          {
+            ...item,
+            id: action.payload.id,
+            content: action.payload.content,
+            date: action.payload.date,
+            priority: action.payload.priority,
+          }
+          : item);
+
+
+
     },
+
+    editTodo: (state, action) => {
+      let { reminders } = state;
+      state.reminders = reminders.map((item) =>
+        item.id === action.payload.id ? action.payload : item);
+    }
   },
 });
 
