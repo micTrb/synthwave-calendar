@@ -96,16 +96,8 @@ export const reminderSlice = createSlice({
             priority: action.payload.priority,
           }
           : item);
-
-
-
     },
 
-    editTodo: (state, action) => {
-      let { reminders } = state;
-      state.reminders = reminders.map((item) =>
-        item.id === action.payload.id ? action.payload : item);
-    }
   },
 });
 

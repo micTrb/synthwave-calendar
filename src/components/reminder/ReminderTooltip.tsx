@@ -1,9 +1,10 @@
 import React from 'react';
-import { Priority, Reminder } from "../../redux/ReminderSlice";
+import { deleteReminder, Priority, Reminder } from "../../redux/ReminderSlice";
 import { format } from 'date-fns';
 import clsx from 'clsx';
 import { getKeyByValue } from '../../utils/getKeyByValue';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 interface Props {
 	reminder: Reminder;
@@ -12,8 +13,9 @@ interface Props {
 
 const ReminderTooltip: React.FC<Props> = ({ reminder }) => {
 
-	const { content, date, priority, } = reminder;
+	const { id, content, date, priority, } = reminder;
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 
 	return (
@@ -50,13 +52,15 @@ const ReminderTooltip: React.FC<Props> = ({ reminder }) => {
 
 
 			<button
-			onClick={() => navigate('/edit-reminder/'+reminder.id)}
+				onClick={() => navigate('/edit-reminder/' + reminder.id)}
 				className="text-white hover:bg-opacity-100 
 				
 				bg-opacity-80 px-4 py-2 text-xl rounded bg-green-500 cursor-pointer"
 
 			>Edit</button>
 			<button
+				onClick={() => dispatch(deleteReminder(reminder))}
+
 				className="text-white hover:bg-opacity-100 
 				
 				bg-opacity-80 px-4 py-2 text-xl rounded bg-red-400 cursor-pointer"
@@ -67,3 +71,7 @@ const ReminderTooltip: React.FC<Props> = ({ reminder }) => {
 }
 
 export default ReminderTooltip
+
+function dispatch(arg0: { payload: any; type: "reminder/deleteReminder"; }): void {
+	throw new Error('Function not implemented.');
+}
