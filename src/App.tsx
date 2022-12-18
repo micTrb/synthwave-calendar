@@ -16,7 +16,7 @@ import EditForm from './components/form/EditForm';
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/synthwave-calendar">
       <div className="items-center justify-center w-full mx-auto 
       bg-opacity-70 bg-no-repeat background">
         <Routes>
