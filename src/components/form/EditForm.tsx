@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import TaskName from "./Taskname";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import DatePicker from "./Datepicker";
+
 import Timepicker from "./Timepicker";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setHours } from "date-fns/esm";
 import { createDate } from "../../utils/createDate";
 import { Navigate, useNavigate } from "react-router";
-import { addReminder, editReminder, Priority, Reminder } from "../../redux/ReminderSlice";
+import {
+  addReminder,
+  editReminder,
+  Priority,
+  Reminder,
+} from "../../redux/ReminderSlice";
 import PrioritySelect from "./PrioritySelect";
 import clsx from "clsx";
 import Recap from "./Recap";
 import { useParams } from "react-router-dom";
-
 
 export interface Step {
   step: number;
@@ -31,18 +33,16 @@ export interface FormData {
   date: Date;
 }
 
-const EditForm: React.FC = ( ) => {
+const EditForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let params = useParams();
-
 
   const reminders = useSelector(
     (state: RootState) => state.reminders.reminders
   );
 
-
-  const reminder = reminders.find(el => el.id === params.id);
+  const reminder = reminders.find((el) => el.id === params.id);
 
   const selectedDate = useSelector(
     (state: RootState) => state.calendar.selectedDate
@@ -58,7 +58,6 @@ const EditForm: React.FC = ( ) => {
     priority: Priority["No Priority"],
     date: new Date(),
   });
-
 
   const formSteps: Step[] = [
     {
@@ -90,16 +89,10 @@ const EditForm: React.FC = ( ) => {
   const PageDisplay = () => {
     if (stepObj.key === "task") {
       return <TaskName formData={formData} setFormData={setFormData} />;
-    } 
-    else if (stepObj.key === "time") {
+    } else if (stepObj.key === "time") {
       return <Timepicker formData={formData} setFormData={setFormData} />;
     } else if (stepObj.key === "priority") {
-      return (
-        <PrioritySelect
-          formData={formData}
-          setFormData={setFormData}
-        />
-      );
+      return <PrioritySelect formData={formData} setFormData={setFormData} />;
     } else if (stepObj.key === "recap") {
       return <Recap formData={formData} setFormData={() => {}} />;
     }
@@ -107,9 +100,8 @@ const EditForm: React.FC = ( ) => {
 
   const submitForm: () => void = () => {
     if (stepObj.key === "time") {
-
       console.log("time submit");
-      
+
       const newDate = createDate(
         selectedDate,
         formData?.hours,
@@ -119,11 +111,9 @@ const EditForm: React.FC = ( ) => {
 
       setFormData({ ...formData, date: newDate });
       setStep((currStep) => currStep + 1);
-      
     } else if (stepObj.key === "recap") {
-
       console.log(formData);
-      
+
       dispatch(
         editReminder({
           id: reminder?.id,
@@ -143,7 +133,9 @@ const EditForm: React.FC = ( ) => {
     <div className="h-screen w-full flex lg:items-center md:items-center items-start justify-center py-8">
       <div className="mx-auto w-full lg:mt-0 md:mt-0 mt-24">
         <div className="my-8 mx-4">
-          <h1 className="font-roadrage text-white text-center lg:text-[4rem] md:text-[3rem] text-[2rem]">{stepObj.text}</h1>
+          <h1 className="font-roadrage text-white text-center lg:text-[4rem] md:text-[3rem] text-[2rem]">
+            {stepObj.text}
+          </h1>
         </div>
         <div className="overflow-hidden">{PageDisplay()}</div>
         <div className="flex justify-center items-center mt-16">
@@ -161,11 +153,37 @@ const EditForm: React.FC = ( ) => {
                 className="flex flex-row space-x-4 items-center justify-center"
                 onClick={() => navigate("/")}
               >
-                <FontAwesomeIcon icon={faArrowLeft} />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+                  />
+                </svg>{" "}
                 <p>Back</p>
               </div>
             ) : (
-              <FontAwesomeIcon icon={faArrowLeft} />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+                />
+              </svg>
             )}
           </button>
 
@@ -176,7 +194,20 @@ const EditForm: React.FC = ( ) => {
             {stepObj.step === formSteps.length - 1 ? (
               "Submit"
             ) : (
-              <FontAwesomeIcon icon={faArrowRight} />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                />
+              </svg>
             )}
           </button>
         </div>

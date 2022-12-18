@@ -2,13 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import { RootState } from "../store";
 import { useSelector } from "react-redux";
-import { isEqual } from "date-fns";
-import { Reminder } from "../redux/ReminderSlice";
-import { compareDates } from "../utils/compareDates";
-import { has } from "immer/dist/internal";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-
 
 interface Props extends React.PropsWithChildren {
   onClick?: () => void;
